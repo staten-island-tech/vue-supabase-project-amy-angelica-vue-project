@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import Account from './components/Account.vue'
 import Auth from './components/TheAuth.vue'
-import { supabase } from '@supabase'
+import supabase from '@supabase/auth-js'
 
 const session = ref()
 
