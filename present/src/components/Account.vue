@@ -1,5 +1,5 @@
 <script setup>
-import { supabase } from '@supabase'
+/* import { supabase } from '@supabase'
 import { onMounted, ref, toRefs } from 'vue'
 
 const props = defineProps(['session'])
@@ -72,11 +72,11 @@ async function signOut() {
   } finally {
     loading.value = false
   }
-}
+} */
 </script>
 
 <template>
-  <form class="form-widget" @submit.prevent="updateProfile">
+ <!--  <form class="form-widget" @submit.prevent="updateProfile">
     <div>
       <label for="email">Email</label>
       <input id="email" type="text" :value="session.user.email" disabled />
@@ -102,5 +102,5 @@ async function signOut() {
     <div>
       <button class="button block" @click="signOut" :disabled="loading">Sign Out</button>
     </div>
-  </form>
+  </form> -->
 </template>

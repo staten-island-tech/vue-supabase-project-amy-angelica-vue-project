@@ -3,9 +3,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import { onMounted, ref } from 'vue'
 import Account from './components/Account.vue'
 import Auth from './components/TheAuth.vue'
-import supabase from '@supabase/auth-js'
+import {createClient} from '@supabase/supabase-js'
 
 const session = ref()
+/* const supabase = createClient('https://uzufnrmrvcxbarxfvhks.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6dWZucm1ydmN4YmFyeGZ2aGtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTIxNTE5NzcsImV4cCI6MjAyNzcyNzk3N30.-iz6vsmlLmImNAIyNjVGPy-q0dznZNeT9W_sRbEJ2mM')
+
+
 
 onMounted(() => {
   supabase.auth.getSession().then(({ data }) => {
@@ -15,7 +18,7 @@ onMounted(() => {
   supabase.auth.onAuthStateChange((_, _session) => {
     session.value = _session
   })
-})
+})*/
 </script>
 
 <template>
