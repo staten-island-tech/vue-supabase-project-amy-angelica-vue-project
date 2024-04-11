@@ -1,7 +1,113 @@
-<script setup>
-import { supabase } from './lib/supabaseClient.js';
+<template>
+  <h1>Login</h1>
+  <div v-if="session">
+      <div class="stuff">
+        <label for="email">Email:</label>
+        <input id="email" type="text" v-model="email" />
+      </div>
+      <div class ='stuff'>
+        <label for="username">Username:</label>
+        <input id="username" type="text" v-model="username" />
+      </div>
+      <div class="stuff">
+        <label for="email">Password</label>
+        <input id="password" type="password" v-model="password" />
+      </div>
+      <div class="buttonContainer">
+		<button @click="createAccount"> Create Account</button>
+		<button @click="login"> Login </button>
+		<button @click="logout"> Logout </button>
+	</div> </div>
+</template>
 
-import { onMounted, ref, toRefs } from 'vue'
+
+<script setup>
+import { ref } from 'vue'
+import { supabase } from '../lib/supabaseClient';
+
+const props = defineProps(['session'])
+
+const loading = ref(false)
+const username = ref('')
+const password = ref('')
+const email = ref('')
+
+
+async function createAccount() {
+  try {
+    loading.value = true
+    const { user, error } = await supabase.auth.signUp({
+      email: email.value,
+      password: password.value,
+      options: {
+        data: {
+          username:username.value
+        }
+      }
+    })
+
+    if (error !== 406) throw error
+console.log("hahhrhrhhr")
+  
+  } catch (error) {
+    alert(error.message)
+  } finally {
+    loading.value = false
+  }
+}
+
+async function login() {
+  try {
+    loading.value = true
+    const theuser = await supabase.auth.getSession();
+    console.log (localUser.data.session)
+    const { user, error } = await supabase.auth.signIn({
+      email: email.value,
+      password: password.value
+    })
+    if (error) throw error
+    console.log(user)
+  } catch (error) {
+    alert(error.message)
+  } finally {
+    loading.value = false
+  }
+}
+
+async function logout() {
+  try {
+    loading.value = true
+    const { error } = await supabase.auth.signOut()
+    if (error) throw error
+  } catch (error) {
+    alert(error.message)
+  } finally {
+    loading.value = false
+  }
+}
+</script>
+
+
+
+     <!--  
+        <input
+          type="submit"
+          class="button primary block"
+          :value="loading ? 'Loading ...' : 'Update'"
+          :disabled="loading"
+        />
+      </div>
+
+      <div>
+        <button class="button block" @click="signOut" :disabled="loading">Sign Out</button>
+      </div>
+  </div> -->
+
+
+<!-- <script setup>
+import { supabase } from '@/lib/supabaseClient.js';
+
+import { onMounted, ref, toRefs, defineProps } from 'vue'
 
 const props = defineProps(['session'])
 const { session } = toRefs(props)
@@ -12,7 +118,8 @@ const website = ref('')
 const avatar_url = ref('')
 
 onMounted(() => {
-  getProfile()
+  if(session.value) {
+  getProfile()}
 })
 
 async function getProfile() {
@@ -104,4 +211,4 @@ async function signOut() {
       <button class="button block" @click="signOut" :disabled="loading">Sign Out</button>
     </div>
   </form>
-</template>
+</template> -->

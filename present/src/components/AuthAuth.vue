@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { supabase } from '@supabase/supabase-js';
-
+import { supabase } from '@/lib/supabaseClient.js';
 
 const loading = ref(false)
 const email = ref('')
@@ -13,7 +12,7 @@ const handleLogin = async () => {
       email: email.value,
     })
     if (error) throw error
-    alert('Check your email for the login link ::::DDDDD')
+    alert('Check your email for the login link.')
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message)
@@ -22,8 +21,44 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+
+const handleLogout = async () => {
+  try {
+    loading.value = true
+    const { error } = await supabase.auth.signOut()
+    if (error) throw error
+  } catch (error) {
+    alert(error.message)
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
+<template>
+  <div>
+    <form class="row flex-center flex" v-if="!$supabase.session()">
+      <div class="col-6 form-widget">
+        <h1 class="header">Supabase + Vue 3</h1>
+        <p class="description">Sign in via magic link with your email below</p>
+        <div>
+          <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
+        </div>
+        <div>
+          <input
+            type="submit"
+            class="button block"
+            :value="loading ? 'Loading' : 'Send magic link'"
+            :disabled="loading"
+            @click.prevent="handleLogin"
+          />
+        </div>
+      </div>
+    </form>
+    <button v-else @click="handleLogout">Logout</button>
+  </div>
+</template>
+<!-- 
 <template>
   <form class="row flex-center flex" @submit.prevent="handleLogin">
     <div class="col-6 form-widget">
@@ -42,4 +77,4 @@ const handleLogin = async () => {
       </div>
     </div>
   </form>
-</template>
+</template> -->

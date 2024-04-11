@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import TheAccount from '@/components/TheAccount.vue';
 import AuthAuth from '@/components/AuthAuth.vue';
-import { supabase } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabaseClient.js';
 
 const session = ref()
 
