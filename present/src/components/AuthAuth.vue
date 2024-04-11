@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue'
 import { supabase } from '@/lib/supabaseClient.js';
 
@@ -57,7 +57,16 @@ const handleLogout = async () => {
     </form>
     <button v-else @click="handleLogout">Logout</button>
   </div>
-</template>
+</template> -->
+
+
+
+
+
+
+
+
+
 <!-- 
 <template>
   <form class="row flex-center flex" @submit.prevent="handleLogin">
