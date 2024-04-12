@@ -1,15 +1,17 @@
+
+
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+<h1>About</h1>
   </div>
+  <WelcomeItem></WelcomeItem>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
+<script setup>
+import WelcomeItem from '@/components/WelcomeItem.vue'
+</script>
+
+<style  scoped>
+
 </style>

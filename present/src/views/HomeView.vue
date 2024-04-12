@@ -1,12 +1,11 @@
 <script setup>
-import WelcomeItem from '../components/WelcomeItem.vue'
+import TheAccount from '@/components/TheAccount.vue'
+
 </script>
 
 <template>
   <h1>You can onyl view if logged in. </h1>
-  <main>
-    <WelcomeItem />
-  </main>
+  <TheAccount></TheAccount>
 </template>
 <!-- 
 <template>

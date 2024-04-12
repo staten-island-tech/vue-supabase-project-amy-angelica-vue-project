@@ -87,3 +87,17 @@ const handleLogout = async () => {
     </div>
   </form>
 </template> -->
+
+<template>
+  <div>
+
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style scoped>
+
+</style>

@@ -1,8 +1,7 @@
-<script setup>
+<!-- <script setup>
 import { onMounted, ref } from 'vue'
 import TheAccount from '@/components/TheAccount.vue';
 import AuthAuth from '@/components/AuthAuth.vue';
-import { supabase } from '@/lib/supabaseClient.js';
 
 const session = ref()
 
@@ -22,4 +21,18 @@ onMounted(() => {
     <TheAccount v-if="session" :session="session" />
     <AuthAuth v-else />
   </div>
+</template> -->
+
+<template>
+  <div>
+
+  </div>
 </template>
+
+<script setup>
+
+</script>
+
+<style  scoped>
+
+</style>
