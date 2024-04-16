@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { createClient } from '@supabase/supabase-js'
-
+ 
 const supabase = createClient('https://uzufnrmrvcxbarxfvhks.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6dWZucm1ydmN4YmFyeGZ2aGtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTIxNTE5NzcsImV4cCI6MjAyNzcyNzk3N30.-iz6vsmlLmImNAIyNjVGPy-q0dznZNeT9W_sRbEJ2mM')
 
 const loading = ref(false)
@@ -10,11 +10,13 @@ const email = ref('')
 const handleLogin = async () => {
   try {
     loading.value = true
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.value,
-    })
+    const { data, error } = await supabase.auth.signUp({
+  email: 'example@email.com',
+  password: 'example-password',
+})
+const user =  await supabase.auth.getUserIdentities()
     if (error) throw error
-    alert('Check your email for the login link!')
+    alert('ok')
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message)
@@ -37,7 +39,7 @@ const handleLogin = async () => {
         <input
           type="submit"
           class="button block"
-          :value="loading ? 'Loading' : 'Send magic link'"
+          :value="loading ? 'Loading' : 'enter'"
           :disabled="loading"
         />
       </div>
