@@ -25,11 +25,12 @@ onMounted(() => {
 
 <template>
   <div>
-
+<AuthAuth></AuthAuth>
   </div>
 </template>
 
 <script setup>
+import AuthAuth from '@/components/AuthAuth.vue'
 
 </script>
 

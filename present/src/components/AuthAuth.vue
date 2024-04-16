@@ -1,101 +1,50 @@
-<!-- <script setup>
-import { ref } from 'vue'
-import { supabase } from '@/lib/supabaseClient.js';
-
-const loading = ref(false)
-const email = ref('')
-
-const handleLogin = async () => {
-  try {
-    loading.value = true
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.value,
-    })
-    if (error) throw error
-    alert('Check your email for the login link.')
-  } catch (error) {
-    if (error instanceof Error) {
-      alert(error.message)
-    }
-  } finally {
-    loading.value = false
-  }
-}
-
-const handleLogout = async () => {
-  try {
-    loading.value = true
-    const { error } = await supabase.auth.signOut()
-    if (error) throw error
-  } catch (error) {
-    alert(error.message)
-  } finally {
-    loading.value = false
-  }
-}
-</script>
 
 <template>
   <div>
-    <form class="row flex-center flex" v-if="!$supabase.session()">
-      <div class="col-6 form-widget">
-        <h1 class="header">Supabase + Vue 3</h1>
-        <p class="description">Sign in via magic link with your email below</p>
-        <div>
-          <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
-        </div>
-        <div>
-          <input
-            type="submit"
-            class="button block"
-            :value="loading ? 'Loading' : 'Send magic link'"
-            :disabled="loading"
-            @click.prevent="handleLogin"
-          />
-        </div>
-      </div>
-    </form>
-    <button v-else @click="handleLogout">Logout</button>
-  </div>
-</template> -->
-
-
-
-
-
-
-
-
-
-<!-- 
-<template>
-  <form class="row flex-center flex" @submit.prevent="handleLogin">
-    <div class="col-6 form-widget">
-      <h1 class="header">Supabase + Vue 3</h1>
-      <p class="description">Sign in via magic link with your email below</p>
-      <div>
-        <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
-      </div>
-      <div>
-        <input
-          type="submit"
-          class="button block"
-          :value="loading ? 'Loading' : 'Send magic link'"
-          :disabled="loading"
-        />
-      </div>
-    </div>
+    <form class="max-w-lg m-auto" @submit.prevent="handleSubmit">
+    <h1 class="text-3xl mb-5">Register</h1>
+    <label>Name <input v-model="form.name" type="text" /></label>
+    <label>Email <input v-model="form.email" type="email" /></label>
+    <label>Password <input v-model="form.password" type="password" /></label>
+    <button>Register</button>
   </form>
-</template> -->
-
-<template>
-  <div>
-
   </div>
 </template>
 
 <script setup>
 
+import { ref } from "vue";
+import useAuthUser from "@/components/AuthUser.js";
+import { useRouter } from "vue-router";
+
+// Use necessary composables
+const router = useRouter();
+const { register } = useAuthUser();
+
+// Form reactive ref to keep up with the form data
+const form = ref({
+  name: "",
+  email: "",
+  password: "",
+});
+
+// function to hand the form submit
+const handleSubmit = async () => {
+  try {
+
+        // use the register method from the AuthUser composable
+    await register(form.value);
+
+        // and redirect to a EmailConfirmation page the will instruct
+        // the user to confirm they're email address
+    router.push({
+      name: "EmailConfirmation",
+      query: { email: form.value.email },
+    });
+  } catch (error) {
+    alert(error.message);
+  }
+};
 </script>
 
 <style scoped>
