@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <form @submit.prevent="onSubmit"></form>
+  </div>
 </template>
 
 <script setup>
