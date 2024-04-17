@@ -6,6 +6,7 @@ const supabase = createClient('https://uzufnrmrvcxbarxfvhks.supabase.co', 'eyJhb
 
 const loading = ref(false)
 const email = ref('')
+const password = ref('')
 
 const handleLogin = async () => {
   try {
@@ -17,6 +18,7 @@ const handleLogin = async () => {
 const user =  await supabase.auth.getUserIdentities()
     if (error) throw error
     alert('ok')
+    console.log(data)
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message)
@@ -34,6 +36,9 @@ const user =  await supabase.auth.getUserIdentities()
       <p class="description">Sign in</p>
       <div>
         <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
+      </div>
+      <div>
+        <input class="inputField" required type="password" placeholder="Your password" v-model="password" />
       </div>
       <div>
         <input
