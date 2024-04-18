@@ -15,10 +15,11 @@ const handleLogin = async () => {
   email: 'example@email.com',
   password: 'example-password',
 })
-const user =  await supabase.auth.getUserIdentities()
+console.log(email, password)
     if (error) throw error
     alert('ok')
-    console.log(data)
+    
+
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message)
@@ -32,7 +33,6 @@ const user =  await supabase.auth.getUserIdentities()
 <template>
   <form class="row flex-center flex" @submit.prevent="handleLogin">
     <div class="col-6 form-widget">
-      <h1 class="header">log in</h1>
       <p class="description">Sign in</p>
       <div>
         <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
