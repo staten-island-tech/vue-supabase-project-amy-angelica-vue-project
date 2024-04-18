@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { supabase } from '@/components/supabaseClient.js'
-
+import { onBeforeMount } from 'vue';
 const loading = ref(false)
 const email = ref('')
 
@@ -21,6 +21,14 @@ const handleLogin = async () => {
     loading.value = false
   }
 }
+
+async function getData () {
+  let {data: Restaurants, error} = await supabase
+  .from ('Restaurants')
+  .select ('Restaurant Name')
+  console.log (Restaurants)
+} 
+onBeforeMount(()=> {getData();})
 </script>
 
 <template>
