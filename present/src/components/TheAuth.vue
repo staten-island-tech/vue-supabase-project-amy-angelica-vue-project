@@ -12,14 +12,31 @@ const handleLogin = async () => {
   try {
     loading.value = true
     const { data, error } = await supabase.auth.signUp({
-  email: 'example@email.com',
-  password: 'example-password',
+  email: 'someEmail',
+  password: 'somePassword',
 })
 console.log(email, password)
     if (error) throw error
     alert('ok')
     
 
+  } catch (error) {
+    if (error instanceof Error) {
+      alert(error.message)
+    }
+  } finally {
+    loading.value = false
+  }
+}
+const login = async()=> {
+  try{
+    loading.value=true
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: 'sabrinal54392@gmail.com',
+  password: 'ilovesupa',
+})
+  if (error) throw error
+    alert('ok')
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message)
