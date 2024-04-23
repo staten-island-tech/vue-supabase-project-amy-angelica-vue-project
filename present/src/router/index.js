@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/account',
       name: 'account',
-      component: () => import('../views/AccountView.vue')
+      component: () => import('../components/TheAuth.vue')
     },
   ]
 })
