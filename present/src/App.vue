@@ -26,7 +26,7 @@ onMounted(() => {
 
 
       <nav>
-        <RouterLink id = "navigate" to="/">Recent Reviews</RouterLink>
+        <RouterLink id = "navigate" to="/">All Restaurants</RouterLink>
         <RouterLink id = "navigate" to="/create">Review</RouterLink>
         <RouterLink id = "navigate" to="/account">Account</RouterLink>
       </nav>
