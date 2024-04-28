@@ -1,7 +1,6 @@
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue'
 import { supabase } from '@/components/supabaseClient.js'
-import { onBeforeMount } from 'vue';
 const loading = ref(false)
 const email = ref('')
 
@@ -22,13 +21,6 @@ const handleLogin = async () => {
   }
 }
 
-async function getData () {
-  let {data: Restaurants, error} = await supabase
-  .from ('Restaurants')
-  .select ('Restaurant Name')
-  console.log (Restaurants)
-} 
-onBeforeMount(()=> {getData();})
 </script>
 
 <template>
@@ -49,4 +41,18 @@ onBeforeMount(()=> {getData();})
       </div>
     </div>
   </form>
+</template> -->
+
+<template>
+  <div>
+
+  </div>
 </template>
+
+<script setup>
+
+</script>
+
+<style scoped>
+
+</style>
