@@ -1,55 +1,72 @@
-
-
 <template>
-
-
-    <form class="ya" @submit.prevent="create()">
-    <h1 class="header">Supabase + Vue 3</h1>
-    <p class="description">Sign in via magic link with your email below</p>
-    <div>
-      <input class="inputField" required type="email" placeholder="Your email" v-model="loginEmail" />
-      <input class="inputField" required type="password" placeholder="Your password" v-model="loginPassword" />
-      <div class="buttons">
-        <button @click="create()">Sign Up</button>
-      </div>
-       <div class="login">
-        <p>Already have an account? Login</p>
-        <router-link class="loginLink" to="/LogIn">here!</router-link>
-      </div>
+  <div>
+    <div v-if="!loggedIn">
+      <h2>Register</h2>
+      <form @submit.prevent="register">
+        <label>Email:</label>
+        <input type="email" v-model="email" required>
+        <label>Password:</label>
+        <input type="password" v-model="password" required>
+        <button type="submit">Register</button>
+      </form>
     </div>
-    <div>
+    <div v-else>
+      <h2>Login</h2>
+      <form @submit.prevent="login">
+        <label>Email:</label>
+        <input type="email" v-model="loginEmail" required>
+        <label>Password:</label>
+        <input type="password" v-model="loginPassword" required>
+        <button type="submit">Login</button>
+      </form>
+      <h2>Secret Content</h2>
+      <p v-if="loggedIn">You can only see this if you're logged in!</p>
     </div>
- 
-</form>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { supabase } from '@/components/supabaseClient.js'
+
+const email = ref('')
+const password = ref('')
 const loginEmail = ref('')
-const loginLoading = ref(false)
+const loginPassword = ref('')
+const loggedIn = ref(false)
 
-async function create () {
-    try {
-      loginLoading.value = true
-      const { error } = await supabase.auth.signInWithOtp({
-        email: loginEmail.value,
-      }, {
-        redirectTo: 'http://localhost:5173/account', 
-      })
-      if (error) throw error
-    } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message)
-      }
-    } finally {
-      loginLoading.value = false
+const register = async () => {
+  try {
+    const { user, error } = await supabase.auth.signUp({
+      email: email.value,
+      password: password.value
+    })
+
+    if (error) {
+      throw error
     }
+
+    // Send verification email
+    await supabase.auth.api.sendVerificationEmail(email.value)
+  } catch (error) {
+    console.error('Error registering:', error.message)
   }
- 
- 
+}
+
+const login = async () => {
+  try {
+    const { user, error } = await supabase.auth.signIn({
+      email: loginEmail.value,
+      password: loginPassword.value
+    })
+
+    if (error) {
+      throw error
+    }
+
+    loggedIn.value = true
+  } catch (error) {
+    console.error('Error logging in:', error.message)
+  }
+}
 </script>
-
-<style scoped>
-
-</style>

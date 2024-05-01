@@ -1,6 +1,4 @@
 
-
-
 <template>
 
     <form class="ye" @submit.prevent="handleRegister">
@@ -14,6 +12,10 @@
     </div>
     <div class="buttons">
         <button @click="create()">Sign Up</button>
+      </div>
+      <div class="login">
+        <p>Already have an account? Login</p>
+        <router-link class="loginLink" to="/LogIn">here!</router-link>
       </div>
 
 </form>
