@@ -1,9 +1,6 @@
 <template>
-
-
     <form class="ya" @submit.prevent="login()">
-    <h1 class="header">Supabase + Vue 3</h1>
-    <p class="description">Sign in via magic link with your email below</p>
+      <h1> Login with your email and password below</h1>
     <div>
       <input class="inputField" required type="email" placeholder="Your email" v-model="loginEmail" />
       <input class="inputField" required type="password" placeholder="Your password" v-model="loginPassword" />
@@ -21,8 +18,8 @@
 <script setup>
 import { ref } from 'vue'
 import { supabase } from '@/components/supabaseClient.js'
-const loginEmail = ref('')
-const loginPassword = ref('')
+const loginEmail = ref()
+const loginPassword = ref()
 const loginLoading = ref(false)
 
 async function login () {

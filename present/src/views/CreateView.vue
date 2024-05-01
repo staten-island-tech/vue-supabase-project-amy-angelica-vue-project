@@ -2,8 +2,7 @@
 <template>
 
     <form class="ye" @submit.prevent="handleRegister">
-    <h1 class="header">Supabase + Vue 3</h1>
-    <p class="description">Register with your email and password below</p>
+    <h1> Register with your email and password below</h1>
     <div>
       <input class="inputField" required type="email" placeholder="Your email" v-model="registerEmail" />
     </div>
@@ -19,7 +18,6 @@
       </div>
 
 </form>
-
   <WelcomeItem></WelcomeItem>
 </template>
 
@@ -31,15 +29,15 @@
   const registerEmail = ref('')
   const registerPassword = ref('')
 
+
+ 
+
  async function create(){
     try {
       registerLoading.value = true
       const { user, error } = await supabase.auth.signUp({
         email: registerEmail.value,
         password: registerPassword.value,
-        data: {
-        username: registerEmail.value,
-      },
     
       }, )
       if (error) throw error
@@ -56,3 +54,18 @@
 
 <style  scoped>
 </style> 
+
+<!-- 
+* This trigger automatically creates a user entry when a new user signs up via Supabase Auth.
+*/ 
+create function public.handle_new_user() 
+returns trigger as $$
+begin
+  insert into public.mrbs_users (id, email, name)
+  values (new.id, new.email, new.raw_user_meta_data->>'name');
+  return new;
+end;
+$$ language plpgsql security definer;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute procedure public.handle_new_user(); -->
