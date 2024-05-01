@@ -18,7 +18,7 @@ const handleLogin = async () => {
 console.log(email, password)
     if (error) throw error
     alert('ok')
-    
+
 
   } catch (error) {
     if (error instanceof Error) {
@@ -28,12 +28,12 @@ console.log(email, password)
     loading.value = false
   }
 }
-const login = async()=> {
+/* const login = async()=> {
   try{
     loading.value=true
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: 'sabrinal54392@gmail.com',
-  password: 'ilovesupa',
+      email: response.user.emails[0],
+      password: response.user.passwords[0],
 })
   if (error) throw error
     alert('ok')
@@ -45,6 +45,7 @@ const login = async()=> {
     loading.value = false
   }
 }
+login(); */
 </script>
 
 <template>
