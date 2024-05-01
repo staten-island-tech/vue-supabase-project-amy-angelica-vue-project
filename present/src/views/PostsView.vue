@@ -1,7 +1,8 @@
 <template>
     <div>
       <div class="container">
-        <RestaurantCard v-for="post in posts" :key="post.created_at" :post="post"/>
+        
+        <PostCard v-for="post in posts" :key="post.post_id" :post="post"/>
       </div>
     </div>
   </template>
