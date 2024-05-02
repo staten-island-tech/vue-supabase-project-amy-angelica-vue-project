@@ -26,11 +26,10 @@ onMounted(() => {
 
 
       <nav>
-        <RouterLink id = "navigate" to="/posts">Posts</RouterLink>
         <RouterLink id = "navigate" to="/">All Restaurants</RouterLink>
+        <RouterLink id = "navigate" to="/posts">Review Posts</RouterLink>
         <RouterLink id = "navigate" to="/create">Review</RouterLink>
         <RouterLink id = "navigate" to="/account">Account</RouterLink>
-        
       </nav>
   </header>
 
