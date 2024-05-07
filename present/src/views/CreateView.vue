@@ -10,7 +10,7 @@
       <input class="inputField" required type="password" placeholder="Your password" v-model="registerPassword" />
     </div>
     <div class="buttons">
-        <button @click="create()">Sign Up</button>
+        <button @click="create_account_for_user()">Sign Up</button>
       </div>
       <div class="login">
         <p>Already have an account? Login</p>
@@ -32,7 +32,7 @@
 
  
 
- async function create(){
+ async function create_account_for_user(){
     try {
       registerLoading.value = true
       const { user, error } = await supabase.auth.signUp({
@@ -40,13 +40,12 @@
         password: registerPassword.value,
     
       }, )
-      if (error) throw error
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message)
       }
     } finally {
-      console.log("Login Successful")
+      console.log ("Register Successful")
       registerLoading.value = false
     }
   }
