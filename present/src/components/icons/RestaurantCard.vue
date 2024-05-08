@@ -4,19 +4,21 @@
         <h2>{{ restaurant.business_address + ", " + restaurant.postcode }}</h2>
         <h2>Sidewalk Seating: {{ restaurant.approved_sidewalk_seating }}</h2>
          <h2>Road Seating: {{ restaurant.approved_road_seating }}</h2>
+         <h3>{{ restaurant.restaurant_id }}</h3>
          
 
  </router-link>
 </template>
 
 <script setup>
-import { computated } from "vue";
+import { computed } from "vue";
 import { RouterLink } from 'vue-router'
 const props = defineProps({
-   restaurant: Object
+   restaurant: Object,
+   restaurant_id: Number 
 })
-const restPath = computated(()=>{
-  return `/data/${props.restaurant.restaurant_name}`;
+const restPath = computed(()=>{
+  return `/data/${props.restaurant.restaurant_id}`;
 });
 </script>
 

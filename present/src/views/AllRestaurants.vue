@@ -1,8 +1,5 @@
 <template>
-  <div class="search_bar">
-    <p>{{ search }}</p>
-    <input v-model="message" placeholder="search for a restaurant to review" />
-  </div>
+
   <div class="container">
     <RestaurantCard
       v-for="restaurant in restaurants"
