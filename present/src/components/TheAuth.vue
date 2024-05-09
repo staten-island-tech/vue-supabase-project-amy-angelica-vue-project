@@ -29,6 +29,7 @@ const supabase = createClient('https://uzufnrmrvcxbarxfvhks.supabase.co', 'eyJhb
 const loading = ref(false)
 const email = ref('')
 const password = ref('')
+
 defineProps({
   props: {
     email: String,
@@ -40,8 +41,8 @@ const handleLogin = async () => {
   try {
     loading.value = true
     const { data, error } = await supabase.auth.signUp({
-      email: props.email.input,
-      password: props.password.input,
+      email: email.value,
+      password: password.value,
 })
 console.log(email, password)
     if (error) throw error
