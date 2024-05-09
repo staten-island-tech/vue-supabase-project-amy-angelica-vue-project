@@ -25,7 +25,7 @@ const loginLoading = ref(false)
 async function login () {
     try {
       loginLoading.value = true
-      const { error } = await supabase.auth.signInWithOtp({
+      const { error } = await supabase.auth.signInWithPassword({
         email: loginEmail.value,
         password: loginPassword.value,
       }, {
