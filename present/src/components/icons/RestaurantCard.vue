@@ -18,7 +18,7 @@ const props = defineProps({
    restaurant_id: Number 
 })
 const restPath = computed(()=>{
-  return `/data/${props.restaurant.restaurant_id}`;
+  return `/restaurant/${props.restaurant.restaurant_id}`;
 });
 </script>
 

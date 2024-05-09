@@ -27,8 +27,8 @@ const router = createRouter({
       component: () => import('../views/PostsView.vue')
     },
     {
-      path: '/data/:id',
-      name: 'data',
+      path: '/restaurant/:restaurant_id',
+      name: 'restaurant',
       component: () => import('../views/RestaurantData.vue')
     }
   ]

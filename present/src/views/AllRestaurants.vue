@@ -20,7 +20,9 @@ const restaurants = ref('')
 
 async function getrestaurant() {
   let { data: restaurant, error } = await supabase.from('Restaurants').select('*')
-  restaurants.value = restaurant
+  restaurants.value = restaurant;
+
+  
 }
 onBeforeMount(() => {
   getrestaurant()
