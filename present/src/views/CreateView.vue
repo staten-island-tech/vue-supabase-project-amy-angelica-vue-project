@@ -17,7 +17,7 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { supabase } from '@/components/supabaseClient.js'
+  import { supabase } from '@/supabaseClient.js'
 
   const registerLoading = ref(false)
   const registerEmail = ref('')
@@ -50,4 +50,4 @@
 </script>
 
 <style  scoped>
-</style> 
+</style> ../../lib/supabaseClient.js

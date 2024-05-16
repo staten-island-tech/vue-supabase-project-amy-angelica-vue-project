@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { supabase } from '@/components/supabaseClient.js'
+import { supabase } from '@/supabaseClient.js'
 const loginEmail = ref()
 const loginPassword = ref()
 const loginLoading = ref(false)
@@ -48,4 +48,4 @@ async function login () {
 
 <style scoped>
 
-</style>
+</style>../../lib/supabaseClient.js
