@@ -1,7 +1,7 @@
 <template>
   <h2>sdfg</h2>
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
-  <h1>{{ selected_rest[0].restaurant_name }}</h1>
+  <h1>{{ selected_rest[0].restaurant_id }}</h1>
   
 </template>
 
