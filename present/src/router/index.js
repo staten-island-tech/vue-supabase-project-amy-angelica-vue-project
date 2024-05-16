@@ -4,16 +4,13 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/create',
-      name: 'create',
+      path: '/createuser',
+      name: 'createuser',
       component: () => import('../views/CreateView.vue')
     },
     {
       path: '/',
       name: 'home',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/HomeView.vue')
     },
     {
@@ -22,11 +19,22 @@ const router = createRouter({
       component: () => import('../views/AccountView.vue')
     },
     {
-      path: '/login',
-      name: 'login',
+      path: '/loginuser',
+      name: 'loginuser',
       component: () => import('../views/LoginView.vue')
     },
   ]
+ /*  const router = createRouter({ history:createWebHistory('https://uzufnrmrvcxbarxfvhks.supabase.co'),
+routes}) */
 })
+router.beforeEach((to, from, next) => {
+  // get current user info
+  const currentUser = supabase.auth.user();
+  const requiresAuth = to.matched.some
+  (record => record.meta.requiresAuth);
 
+  if(requiresAuth && !currentUser) next('sign-in');
+  else if(!requiresAuth && currentUser) next("/");
+  else next();
+})
 export default router

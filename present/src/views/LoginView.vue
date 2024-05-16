@@ -7,7 +7,11 @@
       <div class="buttons">
         <button @click="login()">Sign Up</button>
       </div>
-      
+      <div class="alr_sign">
+        <p>Already have an account? Login</p>
+        <router-link class="loginLink" to="/LogIn">Login Here!</router-link>
+      </div>
+    
     </div>
     <div>
     </div>
