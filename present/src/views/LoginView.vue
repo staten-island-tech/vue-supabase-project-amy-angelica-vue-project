@@ -28,9 +28,7 @@ async function login () {
       const { error } = await supabase.auth.signInWithPassword({
         email: loginEmail.value,
         password: loginPassword.value,
-      }, {
-        redirectTo: 'http://localhost:5173/account', 
-      })
+      },)
       if (error) throw error
     } catch (error) {
       if (error instanceof Error) {
