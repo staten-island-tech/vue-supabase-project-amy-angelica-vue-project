@@ -1,13 +1,13 @@
 <template>
-  <h2>sdfg</h2>
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
-  <h1>{{ selected_rest[0].restaurant_id }}</h1>
-  
+  <h1>{{ selected_rest[0].street }}</h1>
+  <starrating/>
 </template>
 
 <script setup>
 import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
+import starrating from "@/components/icons/starrating.vue";
 const route = useRoute();
 import { createClient } from '@supabase/supabase-js'
 const supabase = createClient(
