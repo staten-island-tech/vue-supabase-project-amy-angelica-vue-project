@@ -27,7 +27,7 @@ const router = createRouter({
  /*  const router = createRouter({ history:createWebHistory('https://uzufnrmrvcxbarxfvhks.supabase.co'),
 routes}) */
 })
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   // get current user info
   const currentUser = supabase.auth.user();
   const requiresAuth = to.matched.some
@@ -36,5 +36,5 @@ router.beforeEach((to, from, next) => {
   if(requiresAuth && !currentUser) next('sign-in');
   else if(!requiresAuth && currentUser) next("/");
   else next();
-})
+}) */
 export default router

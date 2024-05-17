@@ -8,8 +8,8 @@
         <button @click="login()">Sign Up</button>
       </div>
       <div class="alr_sign">
-        <p>Already have an account? Login</p>
-        <router-link class="loginLink" to="/LogIn">Login Here!</router-link>
+        <p>Don't have an account?</p>
+        <router-link class="createink" to="/createuser">Register Here!</router-link>
       </div>
     
     </div>
@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { supabase } from '@/supabaseClient.js'
+import { supabase } from '../../lib/supabaseClient.js'
 const loginEmail = ref()
 const loginPassword = ref()
 const loginLoading = ref(false)
@@ -40,6 +40,8 @@ async function login () {
       }
     } finally {
       loginLoading.value = false
+      this.$router.push('/')
+
     }
   }
  
@@ -48,4 +50,4 @@ async function login () {
 
 <style scoped>
 
-</style>../../lib/supabaseClient.js
+</style>

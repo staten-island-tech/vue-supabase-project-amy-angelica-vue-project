@@ -7,18 +7,14 @@ import AuthAuth from './components/AuthAuth.vue'
 
 <template>
    <div class="container" style="padding: 50px 0 100px 0">
-    <TheAccount v-if="session" :session="session" />
-    <AuthAuth v-else />
   </div>
   
   <header class = "header">
-
-
       <nav>
         <RouterLink id = "navigate" to="/">Home</RouterLink>
-        <RouterLink id = "navigate" to="/create">Create</RouterLink>
+        <RouterLink id = "navigate" to="/createuser">Create</RouterLink>
         <RouterLink id = "navigate" to="/account">Account</RouterLink>
-        <RouterLink id = "navigate" to="/login">Login</RouterLink>
+        <RouterLink id = "navigate" to="/loginuser">Login</RouterLink>
       </nav>
   </header>
 
