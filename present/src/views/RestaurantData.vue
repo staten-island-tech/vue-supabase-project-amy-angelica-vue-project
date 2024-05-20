@@ -1,7 +1,7 @@
 <template>
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
   <h1>{{ selected_rest[0].street }}</h1>
-  <form action=""></form>
+  
   <starrating/>
 </template>
 
@@ -20,7 +20,7 @@ async function get_s_restaurant() {
   try {
     let { data: restaurant, error } = await supabase.from('Restaurants').select('*').eq('restaurant_id', `${route.params.restaurant_id}`);
   selected_rest.value = restaurant;
-  console.log(restaurant)
+ 
   if(error){
     throw new Error(error)
   }
@@ -31,7 +31,25 @@ async function get_s_restaurant() {
 }
 onBeforeMount(() => {
   get_s_restaurant();
-})
+});
+
+async function get_posts() {
+  let postdata = ref('');
+  try {
+    let { data: post, error } = await supabase.from('Posts').select('*').eq('restaurant_id', `${route.params.restaurant_id}`);
+  postdata.value = post;
+  console.log(post)
+  if(error){
+    throw new Error(error)
+  }
+  } catch (error) {
+    console.log(error)
+  }
+  
+}
+onBeforeMount(() => {
+  get_posts();
+});
 
 </script>
 
