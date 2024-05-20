@@ -1,6 +1,7 @@
 <template>
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
   <h1>{{ selected_rest[0].street }}</h1>
+  <form action=""></form>
   <starrating/>
 </template>
 
