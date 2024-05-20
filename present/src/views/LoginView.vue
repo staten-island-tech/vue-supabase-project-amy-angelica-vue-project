@@ -49,7 +49,7 @@ async function login() {
     }
   } finally {
     loginLoading.value = false
-    this.$router.push('/')
+    router.push('/account')
   }
 }
 </script>

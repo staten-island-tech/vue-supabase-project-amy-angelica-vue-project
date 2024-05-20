@@ -49,10 +49,7 @@ async function create_account_for_user() {
   } finally {
     console.log('Register Successful')
     registerLoading.value = false
-    /*  <h2>Confirm your signup</h2>
 
-<p>Follow this link to confirm your user:</p>
-<p><a href="{{ .ConfirmationURL }}">Confirm your mail</a></p> */
   }
 }
 </script>
