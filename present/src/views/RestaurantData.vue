@@ -9,10 +9,11 @@
       :post="post"
     />
   </div>
-  <a @click.once="doThis"></a>
+  <CreateReview/>
 </template>
 
 <script setup>
+import CreateReview from "@/components/CreateReview.vue";
 import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
