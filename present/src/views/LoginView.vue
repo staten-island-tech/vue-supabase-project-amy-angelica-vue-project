@@ -49,9 +49,11 @@ async function login() {
     }
   } finally {
     loginLoading.value = false
-    router.push('/account')
+    this.router.push('/account')
   }
 }
+//https://upmostly.com/vue-js/how-to-use-vue-with-pinia-to-set-up-authentication
 </script>
 
 <style scoped></style>
+
