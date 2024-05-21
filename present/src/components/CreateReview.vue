@@ -1,15 +1,30 @@
 <template>
    <h1>Write A Review!</h1>
-   <div @click.once="counter++">Upvote!</div>
-   <p>Upvotes: {{ counter }}</p>
+   <button @click="post_it()">click</button>
+   <starrating/>
+
      </template>
      
      <script setup>
-   
-    import { ref } from 'vue'
-   
-   const counter = ref(0)
-     </script>
+     import { supabase } from './supabaseClient';
+import starrating from './icons/starrating.vue';
+
+async function post_it() {
+  try {
+    const { error } = await supabase.from('Posts')
+  .insert({restaurant_id: 1, review: "lovely"})
+  console.log("hi")
+  if(error){
+    throw new Error(error)
+  }
+  } catch (error) {
+    console.log(error)
+  }
+  
+}
+
+
+  </script>
      <style>
     
      </style>

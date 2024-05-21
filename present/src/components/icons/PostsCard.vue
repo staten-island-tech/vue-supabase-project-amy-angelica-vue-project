@@ -6,7 +6,6 @@
 </template>
 
 <script setup>
-import starrating from './starrating.vue';
 import likebutton from './likebutton.vue';
 const props = defineProps({
    post: Object,
