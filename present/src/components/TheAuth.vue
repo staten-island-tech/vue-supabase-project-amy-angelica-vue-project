@@ -6,6 +6,9 @@
         <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
       </div>
       <div>
+        <input class="inputField" placeholder="Your username" v-model="username" />
+      </div>
+      <div>
         <input class="inputField" required type="password" placeholder="Your password" v-model="password" />
       </div>
       <div>
@@ -29,6 +32,7 @@ const supabase = createClient('https://uzufnrmrvcxbarxfvhks.supabase.co', 'eyJhb
 const loading = ref(false)
 const email = ref('')
 const password = ref('')
+const username = ref('')
 
 defineProps({
   props: {
@@ -43,6 +47,9 @@ const handleLogin = async () => {
     const { data, error } = await supabase.auth.signUp({
       email: email.value,
       password: password.value,
+      data: {
+        username: username
+      },
 })
 console.log(email, password)
     if (error) throw error
@@ -55,6 +62,10 @@ console.log(email, password)
     loading.value = false
   }
 }
+
+//const { error } = await supabase.auth.signOut()
+
+
 /* const login = async()=> {
   try{
     loading.value=true
