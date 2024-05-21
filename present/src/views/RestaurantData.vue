@@ -1,20 +1,22 @@
 <template>
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
-  <h1>{{ selected_rest[0].street }}</h1>
-  
-  <starrating/>
+  <h2>{{ selected_rest[0].street }}</h2>
+  <div class="container">
+    <h1>Reviews</h1>
+    <PostsCard
+      v-for="post in posts"
+      :key="post.postid"
+      :post="post"
+    />
+  </div>
+  <a @click.once="doThis"></a>
 </template>
 
 <script setup>
 import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
-import starrating from "@/components/icons/starrating.vue";
 const route = useRoute();
-import { createClient } from '@supabase/supabase-js'
-const supabase = createClient(
-  'https://uzufnrmrvcxbarxfvhks.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6dWZucm1ydmN4YmFyeGZ2aGtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTIxNTE5NzcsImV4cCI6MjAyNzcyNzk3N30.-iz6vsmlLmImNAIyNjVGPy-q0dznZNeT9W_sRbEJ2mM'
-)
+import { supabase } from "@/components/supabaseClient";
 let selected_rest = ref('');
 async function get_s_restaurant() {
   try {
@@ -32,13 +34,12 @@ async function get_s_restaurant() {
 onBeforeMount(() => {
   get_s_restaurant();
 });
-
+  let posts = ref('');
 async function get_posts() {
-  let postdata = ref('');
+
   try {
     let { data: post, error } = await supabase.from('Posts').select('*').eq('restaurant_id', `${route.params.restaurant_id}`);
-  postdata.value = post;
-  console.log(post)
+  posts.value = post;
   if(error){
     throw new Error(error)
   }
@@ -50,7 +51,7 @@ async function get_posts() {
 onBeforeMount(() => {
   get_posts();
 });
-
+import PostsCard from "@/components/icons/PostsCard.vue";
 </script>
 
 <style></style>
