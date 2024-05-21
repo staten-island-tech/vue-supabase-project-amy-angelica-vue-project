@@ -1,5 +1,5 @@
 <template>
-<div @click.once="counter++">Upvote!</div>
+<button @click.once="counter++">Upvote!</button>
 <p>Upvotes: {{ counter }}</p>
   </template>
   

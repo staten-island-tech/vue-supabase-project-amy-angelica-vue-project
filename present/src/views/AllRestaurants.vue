@@ -26,7 +26,7 @@ onBeforeMount(() => {
 import RestaurantCard from '@/components/icons/RestaurantCard.vue'
 
 </script>
-<style scoped>
+<style >
 .container {
   display: flex;
   align-items: center;

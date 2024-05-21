@@ -1,8 +1,9 @@
 <template>
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
   <h2>{{ selected_rest[0].street }}</h2>
+  <h1>Reviews</h1>
   <div class="container">
-    <h1>Reviews</h1>
+    
     <PostsCard
       v-for="post in posts"
       :key="post.postid"
@@ -55,4 +56,12 @@ onBeforeMount(() => {
 import PostsCard from "@/components/icons/PostsCard.vue";
 </script>
 
-<style></style>
+<style>
+.container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+</style>

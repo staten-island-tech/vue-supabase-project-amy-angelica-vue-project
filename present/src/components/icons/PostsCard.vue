@@ -1,8 +1,9 @@
-<template>        
+<template> 
+<div class="card">      
 <h2>{{ post.user_id }}</h2>
   <h3>Created at:{{ post.created_at }}</h3>
         <h2>Rating: {{ post.rating }}</h2>
-<likebutton/>
+<likebutton/></div> 
 </template>
 
 <script setup>
@@ -14,7 +15,7 @@ const props = defineProps({
 
 </script>
 
-<style scoped>
+<style>
 .card {
    font-size: 0.5rem;
    background-color: white;
