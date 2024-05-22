@@ -8,8 +8,16 @@
 <script setup>
 import { supabase } from './supabaseClient'
 import starrating from './icons/starrating.vue'
-
-async function post_it() {
+import { ref } from 'vue'
+const counter = ref(0)
+function export_counter(){
+  if (counter !==0) {
+    const rating = counter
+  }  
+}
+export_counter();
+async function post_it(rating) {
+  
   try {
     const { error } = await supabase.from('Posts')
     .insert({ 

@@ -15,13 +15,5 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-const counter = ref(0)
-function export_counter(){
-  if (counter !==0) {
-    const rating = counter
-  } 
- 
-}
-export_counter();
+
 </script>
