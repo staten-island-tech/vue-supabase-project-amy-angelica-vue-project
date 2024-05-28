@@ -41,16 +41,13 @@ async function login() {
     const { error } = await supabase.auth.signInWithPassword({
       email: loginEmail.value,
       password: loginPassword.value
-    })
+    }).then(router.push('/'))
     if (error) throw error
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message)
     }
-  } finally {
-    loginLoading.value = false
-    this.router.push('/account')
-  }
+  } 
 }
 //https://upmostly.com/vue-js/how-to-use-vue-with-pinia-to-set-up-authentication
 </script>

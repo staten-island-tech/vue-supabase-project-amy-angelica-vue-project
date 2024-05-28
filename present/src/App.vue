@@ -1,9 +1,15 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { supabase } from '../lib/supabaseClient.js'
+import {storeSession} from '@/stores/session.js'
+const { data } = supabase.auth.onAuthStateChange((event, session) => {
+  console.log(event, session)
+  storeSession.sesson === session })
+
 </script>
 
 <template>
+
   <header class="header">
     <nav>
       <RouterLink id="navigate" to="/">Home</RouterLink>
@@ -21,7 +27,6 @@ import { supabase } from '../lib/supabaseClient.js'
 .header {
   text-align: center;
 }
-
 #navigate {
   color: black;
 

@@ -1,4 +1,4 @@
-import { userSessionStore } from '@/stores/session'
+import { storeSession } from '@/stores/session'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -23,21 +23,22 @@ const router = createRouter({
     {
       path: '/loginuser',
       name: 'loginuser',
-      component: () => import('../views/LoginView.vue')
-      ,meta: { needsAuth: true}},
+      component: () => import('../views/LoginView.vue'),
+      meta: { needsAuth: true}},
   ]
 })
 
 router.beforeEach((to,from,next)=> {
-  const userSession = userSessionStore()
+  const userSession = storeSession()
 
   if (to.meta.needsAuth){
     if (userSession.session){
       return next()
     }
     else {
-      return next (d;flmbpdksf';l)
+      return next ('/')
     }
   }
+  return next()
 })
 export default router
