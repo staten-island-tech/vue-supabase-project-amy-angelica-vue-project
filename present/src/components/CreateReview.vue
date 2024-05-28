@@ -30,7 +30,7 @@ async function post_it(rating) {
     const { error } = await supabase.from('Posts')
     .insert({ 
       rating: rating,
-      restaurant_id: 1, 
+      restaurant_id: 2, 
       review: 'lovely', 
 
     })
