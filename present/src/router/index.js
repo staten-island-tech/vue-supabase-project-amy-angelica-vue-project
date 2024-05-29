@@ -18,15 +18,15 @@ const router = createRouter({
     {
       path: '/account',
       name: 'account',
-      component: () => import('../views/AccountView.vue')
+      component: () => import('../views/AccountView.vue'),
+      meta: { needsAuth: true},
     },
     {
       path: '/loginuser',
       name: 'loginuser',
-      component: () => import('../views/LoginView.vue'),
-      meta: { needsAuth: true}},
-  ]
-})
+      component: () => import('../views/LoginView.vue'), },
+  
+]})
 
 router.beforeEach((to,from,next)=> {
   const userSession = storeSession()

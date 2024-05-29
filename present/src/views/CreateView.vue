@@ -24,19 +24,18 @@
     <p>Already have an account? Login</p>
     <router-link class="loginLink" to="/loginuser">Login Here!</router-link>
   </div>
+  
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { supabase } from '../../lib/supabaseClient.js'
 
-const registerLoading = ref(false)
 const registerEmail = ref('')
 const registerPassword = ref('')
 
 async function create_account_for_user() {
   try {
-    registerLoading.value = true
     const { error } = await supabase.auth.signUp({
       email: registerEmail.value,
       password: registerPassword.value
@@ -48,7 +47,6 @@ async function create_account_for_user() {
     }
   } finally {
     console.log('Register Successful')
-    registerLoading.value = false
 
   }
 }

@@ -11,7 +11,7 @@ async function logout() {
     const { error } = await supabase.auth.signOut({
       email: loginEmail.value,
       password: loginPassword.value
-    }).then(router.push('/loginuser'))
+    })/* .then(router.push('/loginuser')) */
     if (error) throw error
   } catch (error) {
       alert(error.message)
