@@ -6,7 +6,7 @@
         <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
       </div>
       <div>
-        <input class="inputField" placeholder="Your username" v-model="username" />
+        <input class="inputField" required type="username" placeholder="Your username" v-model="username" />
       </div>
       <div>
         <input class="inputField" required type="password" placeholder="Your password" v-model="password" />
@@ -47,11 +47,13 @@ const handleLogin = async () => {
     const { data, error } = await supabase.auth.signUp({
       email: email.value,
       password: password.value,
+      options: {
       data: {
-        username: username
-      },
+        user_name: username,
+      }
+    }
 })
-console.log(email, password)
+console.log(email, password, username)
     if (error) throw error
     alert('ok')
   } catch (error) {
@@ -63,6 +65,7 @@ console.log(email, password)
   }
 }
 
+          
 //const { error } = await supabase.auth.signOut()
 
 
