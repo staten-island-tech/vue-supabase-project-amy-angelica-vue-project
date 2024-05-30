@@ -4,7 +4,7 @@ export const usethisStore = defineStore('StoreCreated',{
     state: () => {
         return {
             restaurant: null,
-            restaurant_id: null,
+            restaurant_id: 2,
             rating: null,
         }
     }

@@ -17,6 +17,8 @@
 import CreateReview from "@/components/CreateReview.vue";
 import { ref, onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
+import { usethisStore } from "@/stores/storecreate";
+const store = usethisStore();
 const route = useRoute();
 import { supabase } from "@/components/supabaseClient";
 let selected_rest = ref('');
@@ -24,18 +26,20 @@ async function get_s_restaurant() {
   try {
     let { data: restaurant, error } = await supabase.from('Restaurants').select('*').eq('restaurant_id', `${route.params.restaurant_id}`);
   selected_rest.value = restaurant;
- 
+    store.$patch({
+      restaurant:  restaurant[0].restaurant_name,
+      restaurant_id: restaurant[0].restaurant_id,
+    })
   if(error){
     throw new Error(error)
   }
   } catch (error) {
     console.log(error)
   }
-  
 }
 onBeforeMount(() => {
   get_s_restaurant();
-});
+});   
   let posts = ref('');
 async function get_posts() {
 
