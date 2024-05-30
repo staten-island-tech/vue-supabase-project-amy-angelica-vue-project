@@ -29,6 +29,7 @@
 </template>
 
 <script setup>
+import { storeSession } from '@/stores/session';
 import { ref } from 'vue'
 import { supabase } from '../../lib/supabaseClient.js'
 const loginEmail = ref()
@@ -41,13 +42,20 @@ async function login() {
     const { error } = await supabase.auth.signInWithPassword({
       email: loginEmail.value,
       password: loginPassword.value
-    }).then(router.push('/'))
+    })
     if (error) throw error
-  } catch (error) {
+  /*   else {
+if (storeSession.session = login) {
+  router.push({ path: `/account` })
+}}
+    */
+    }
+    catch (error) {
     if (error instanceof Error) {
-      alert(error.message)
+      alert('Username and/or password is not found in our system. Maybe try again or create an account?')
     }
   } 
+
 }
 //https://upmostly.com/vue-js/how-to-use-vue-with-pinia-to-set-up-authentication
 </script>

@@ -39,7 +39,7 @@ async function create_account_for_user() {
     const { error } = await supabase.auth.signUp({
       email: registerEmail.value,
       password: registerPassword.value
-    }).then(router.push('/'))
+    })
     if (error) throw error
   } catch (error) {
     if (error instanceof Error) {
@@ -72,3 +72,4 @@ h1 {
   margin: 10px;
 }
 </style>
+

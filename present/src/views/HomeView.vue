@@ -1,20 +1,22 @@
 <template>
   <div>
-    <h1>Home Page. User {{session.session}}</h1>
+    <h1>Home Page. User {{storeSession.session}}</h1>
     <button @click.prevent="logout">Log Out</button>
   </div>
 </template>
 
 <script setup>
+import { storeSession } from '@/stores/session'
+import { supabase } from '../../lib/supabaseClient.js'
+
+
 async function logout() {
   try {
-    const { error } = await supabase.auth.signOut({
-      email: loginEmail.value,
-      password: loginPassword.value
-    })/* .then(router.push('/loginuser')) */
+    const { error } = await supabase.auth.signOut()
     if (error) throw error
   } catch (error) {
       alert(error.message)
+      console.log (storeSession.session)
   } 
 }
 </script>
