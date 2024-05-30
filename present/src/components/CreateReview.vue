@@ -20,9 +20,10 @@
 <script setup>
 import { supabase } from './supabaseClient'
 import { ref } from 'vue'
+
+const store = useStore()
 const counter = ref(0)
 if (counter !== 0) {
-  let rating = counter
 }
 
 async function post_it(rating) {
@@ -30,7 +31,7 @@ async function post_it(rating) {
     const { error } = await supabase.from('Posts')
     .insert({ 
       rating: rating,
-      restaurant_id: 1, 
+      restaurant_id: restaurant_idnpm, 
       review: 'lovely', 
 
     })
