@@ -1,7 +1,7 @@
 <template>
   <form class="row flex-center flex" @submit.prevent="handleLogin">
     <div class="col-6 form-widget">
-      <p class="description">Sign in</p>
+      <p class="description">Sign up</p>
       <div>
         <input class="inputField" required type="email" placeholder="Your email" v-model="email" />
       </div>
@@ -89,3 +89,6 @@ console.log(email, password, username)
 login(); */
 </script>
 
+<style>
+    
+</style>

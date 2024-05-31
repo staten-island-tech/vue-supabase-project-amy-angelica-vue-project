@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/create',
       name: 'create',
-      component: () => import('../views/CreateView.vue')
+      component: () => import('../components/TheAuth.vue')
     },
     {
       path: '/',
@@ -19,7 +19,7 @@ const router = createRouter({
     {
       path: '/account',
       name: 'account',
-      component: () => import('../components/TheAuth.vue')
+      component: () => import('../components/Account.vue')
     },
   ]
 })
