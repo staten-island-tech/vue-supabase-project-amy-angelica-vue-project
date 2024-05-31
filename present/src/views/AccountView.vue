@@ -1,7 +1,9 @@
 <template>
-   <router-link to="/">Home</router-link>
+      <form @submit.prevent class="form">
+   <router-link to="/home">Home</router-link>
         <router-link to="/account">Account</router-link>
   <div></div>
+  </form>
 </template>
 
 <script setup></script>

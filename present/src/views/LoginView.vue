@@ -1,9 +1,7 @@
 <template>
   <form class="ya" @submit.prevent="login()">
-    <router-link to="/loginuser">Login</router-link>
+    <router-link to="/">Login</router-link>
         <router-link to="/createuser">Register</router-link>
-        <router-link to="/account">Account</router-link>
-        <router-link to="/">Home</router-link>
     <h1>Login with your email and password below</h1>
     <div>
       <input

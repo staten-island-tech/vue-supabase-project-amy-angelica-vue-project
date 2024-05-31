@@ -11,31 +11,46 @@ const router = createRouter({
     
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: () => import('../views/HomeView.vue'),
-      meta: { requiresAuth: true }
-  
+     meta: { requiresAuth: true }
+ 
     },
     {
       path: '/account',
       name: 'account',
-      component: () => import('../views/AccountView.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('../views/AccountView.vue'),       meta: { requiresAuth: true }
     },
     {
-      path: '/loginuser',
+      path: '/',
       name: 'loginuser',
       component: () => import('../views/LoginView.vue'), },
   
 ]})
+
+
+router.beforeEach((to, from, next) => {
+  const userSession = storeSession()
+
+  if (to.meta.needsAuth) {
+    if (userSession.session) {
+      return next()
+    } else {
+      return next('/')
+    }
+  }
+
+  return next()
+})
+/* 
 router.beforeEach((to, from, next) => {
   const session = storeSession()
   if (to.meta.requiresAuth && !session.session) // checks if it requires auth and if user is not currently logged in
   {
-    next('/loginuser')
+    next('/')
   } else {
     next()
   }
-})
+})  */
 export default router
