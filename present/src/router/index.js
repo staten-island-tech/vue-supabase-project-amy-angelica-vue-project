@@ -1,4 +1,4 @@
-import { storeSession } from '@/stores/session'
+import { storeSession } from '@/stores/session.js'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -7,18 +7,21 @@ const router = createRouter({
     {
       path: '/createuser',
       name: 'createuser',
-      component: () => import('../views/CreateView.vue')
+      component: () => import('../views/CreateView.vue'),
+    
     },
     {
       path: '/',
       name: 'home',
       component: () => import('../views/HomeView.vue'),
+      meta: { requiresAuth: true }
   
     },
     {
       path: '/account',
       name: 'account',
       component: () => import('../views/AccountView.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/loginuser',
@@ -26,18 +29,13 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue'), },
   
 ]})
-/* 
-router.beforeEach((to,from,next)=> {
-  const userSession = storeSession()
-
-  if (to.meta.needsAuth){
-    if (userSession.session){
-      return next()
-    }
-    else {
-      return next ('/')
-    }
+router.beforeEach((to, from, next) => {
+  const session = storeSession()
+  if (to.meta.requiresAuth && !session.session) // checks if it requires auth and if user is not currently logged in
+  {
+    next('/loginuser')
+  } else {
+    next()
   }
-  return next()
-}) */
+})
 export default router

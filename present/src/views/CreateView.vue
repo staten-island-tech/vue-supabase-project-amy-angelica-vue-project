@@ -1,6 +1,10 @@
 <template>
   <form class="all-createuser" @submit.prevent="create_account_for_user()">
-    <h1>Register with your email and password below.</h1>
+    <router-link to="/loginuser">Login</router-link>
+        <router-link to="/createuser">Register</router-link>
+        <router-link to="/account">Account</router-link>
+        <router-link to="/">Home</router-link>
+        <h1>Register with your email and password below.</h1>
 
     <input
       class="inputField"

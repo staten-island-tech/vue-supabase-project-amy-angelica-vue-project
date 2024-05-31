@@ -1,5 +1,9 @@
 <template>
   <form class="ya" @submit.prevent="login()">
+    <router-link to="/loginuser">Login</router-link>
+        <router-link to="/createuser">Register</router-link>
+        <router-link to="/account">Account</router-link>
+        <router-link to="/">Home</router-link>
     <h1>Login with your email and password below</h1>
     <div>
       <input
@@ -17,7 +21,7 @@
         v-model="loginPassword"
       />
       <div class="buttons">
-        <button type="submit">Sign Up</button>
+        <button type="submit">Sign In</button>
       </div>
       <div class="alr_sign">
         <p>Don't have an account?</p>
@@ -29,12 +33,14 @@
 </template>
 
 <script setup>
-import { storeSession } from '@/stores/session';
 import { ref } from 'vue'
 import { supabase } from '../../lib/supabaseClient.js'
+import { useRouter } from 'vue-router'
+
 const loginEmail = ref()
 const loginPassword = ref()
 const loginLoading = ref(false)
+const router = useRouter()
 
 async function login() {
   try {
@@ -44,20 +50,16 @@ async function login() {
       password: loginPassword.value
     })
     if (error) throw error
-  /*   else {
-if (storeSession.session = login) {
-  router.push({ path: `/account` })
-}}
-    */
-    }
-    catch (error) {
+
+    router.push('/account')
+  } catch (error) {
     if (error instanceof Error) {
       alert('Username and/or password is not found in our system. Maybe try again or create an account?')
     }
-  } 
-
+  } finally {
+    loginLoading.value = false
+  }
 }
-//https://upmostly.com/vue-js/how-to-use-vue-with-pinia-to-set-up-authentication
 </script>
 
 <style scoped></style>

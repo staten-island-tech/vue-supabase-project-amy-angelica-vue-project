@@ -1,35 +1,67 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+/* import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { storeSession } from '@/stores/session.js'
 import { supabase } from '../lib/supabaseClient.js'
-import {storeSession} from '@/stores/session.js'
-const { data } = supabase.auth.onAuthStateChange((event, session) => {
+
+
+const router = useRouter()
+const sessionStore = storeSession()
+const isLoggedIn = sessionStore.session !== null 
+
+async function logout() {
+  try {
+    const { error } = await supabase.auth.signOut()
+    if (error) throw error
+  } catch (error) {
+      alert(error.message)
+  } 
+} 
+
+supabase.auth.onAuthStateChange((event, session) => {
   console.log(event, session)
-  storeSession.sesson === session })
+  sessionStore.session = session
+})  */
+import { RouterView } from 'vue-router'
+import { supabase } from '../lib/supabaseClient.js'
+import { storeSession } from '@/stores/session.js'
+
+const sessionStore = storeSession()
+
+supabase.auth.onAuthStateChange((event, session) => {
+  console.log(event, session)
+  sessionStore.session = session })
 
 </script>
 
 <template>
+  <header>
+      <nav>
 
-  <header class="header">
+   
+      </nav>
+  </header>
+  <RouterView />
+ <!--  <header class="header">
     <nav>
-      <RouterLink id="navigate" to="/">Home</RouterLink>
-      <RouterLink id="navigate" to="/createuser">Create</RouterLink>
-      <RouterLink id="navigate" to="/account">Account</RouterLink>
-      <RouterLink id="navigate" to="/loginuser">Login</RouterLink>
-    </nav>
+      <template v-if="isLoggedIn">
+        <router-link to="/">Home</router-link>
+        <router-link to="/account">Account</router-link>
+        <button @click="logout">Logout</button>
+      </template>
+      <template v-else>
+        <router-link to="/loginuser">Login</router-link>
+        <router-link to="/createuser">Register</router-link>
+        <router-link to="/account">Account</router-link>
+
+        <router-link to="/">Home</router-link>
+      </template>
+     </nav>
   </header>
   <main>
     <RouterView />
-  </main>
+  </main> -->
 </template>
 
 <style scoped>
-.header {
-  text-align: center;
-}
-#navigate {
-  color: black;
 
-  margin: 0 30px;
-}
 </style>
