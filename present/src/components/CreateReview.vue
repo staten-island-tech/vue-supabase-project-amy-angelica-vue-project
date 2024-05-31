@@ -34,7 +34,7 @@ async function post_it(rating) {
     .insert({ 
       rating: rating,
       restaurant_id: store.restaurant_id, 
-      review: `${message}`, 
+      review: {message}, 
 
     })
     console.log('hi')
