@@ -3,7 +3,9 @@
 <h2>{{ post.user_id }}</h2>
   <h3>Created at:{{ post.created_at }}</h3>
         <h2>Rating: {{ post.rating }}</h2>
+       <h2>comments: {{ post.review }}</h2> 
 <likebutton/></div> 
+
 </template>
 
 <script setup>

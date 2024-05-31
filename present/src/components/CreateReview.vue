@@ -1,5 +1,5 @@
 <template>
-  <h1>Write A Review!:</h1>
+  <h1>Write A Review!</h1>
 
   <div>
     <div v-if="counter == 0">
@@ -14,15 +14,18 @@
     <button class="4" @click="counter = 4">4</button>
     <button class="5" @click="counter = 5">5</button>
   </div>
+  <textarea v-model="message" placeholder="add multiple lines"></textarea>
   <button @click.once="post_it(counter)">Post Review</button>
 </template>
 
 <script setup>
 import { supabase } from './supabaseClient'
 import { ref } from 'vue'
+import { usethisStore } from '@/stores/storecreate';
+const store = usethisStore();
+store.count++
 const counter = ref(0)
 if (counter !== 0) {
-  let rating = counter
 }
 
 async function post_it(rating) {
@@ -30,8 +33,8 @@ async function post_it(rating) {
     const { error } = await supabase.from('Posts')
     .insert({ 
       rating: rating,
-      restaurant_id: 2, 
-      review: 'lovely', 
+      restaurant_id: store.restaurant_id, 
+      review: `${message}`, 
 
     })
     console.log('hi')
