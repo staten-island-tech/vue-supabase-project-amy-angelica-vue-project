@@ -123,7 +123,7 @@ export default {
       <div class="yoyo">
         <label for="username">Username</label>
         <input type="text" required v-model="user.username" id="username">
-        <h3>Username: {{this.user.username}}</h3>
+    
       </div>
       <button type="submit" class="button">Submit</button>
     </form>
