@@ -1,5 +1,5 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import TheWelcome from '@/components/TheWelcome.vue';
 
 const URL = "https://data.cityofnewyork.us/resource/pitm-atqc.json"
 async function getData(URL){
