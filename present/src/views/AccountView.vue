@@ -110,34 +110,30 @@ export default {
   }
 }
 </script>
- -->
- <template>
-  <div>
-    <br>
-    <header class="header">
+ --><template>
       <nav>
         <router-link to="/home">Home</router-link>
         <router-link to="/account">Account</router-link>
       </nav>
-    </header>
-  </div>
-  <div>
+      <div>
     <h1 class="page">Profile</h1>
-    <p>Updated Username: {{ user.username }}</p>
-  </div>
-  <div class="header">
+      </div>
+      <div class="header">
     <form @submit.prevent="Submit" class="form">
-      <div class="form1">
+      <div class="yoyo">
         <label for="username">Username</label>
-        <!-- Corrected v-model to user.username -->
-        <input type="text" required v-model="user.username" id="username" class="form2">
+        <input type="text" required v-model="user.username" id="username">
+        <h3>Username: {{this.user.username}}</h3>
       </div>
       <button type="submit" class="button">Submit</button>
     </form>
-  </div> 
-</template><script>
-import { supabase } from '../../lib/supabaseClient.js'
+    </div>
+  </template>
 
+<script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { supabase } from '../../lib/supabaseClient.js';
 export default {
   data() {
     return {
@@ -149,31 +145,34 @@ export default {
   methods: {
     async Submit() {
       try {
-        const { user, session, error: sessionError } = supabase.auth
-
-        if (sessionError) {
-          throw new Error('Error fetching session: ' + sessionError.message)
-        }
-
-        if (!user || !session) {
-          throw new Error('User not authenticated')
-        }
-
-        const { error } = await supabase
+        const { data: { user } } = await supabase.auth.getUser()
+   
+        let { error } = await supabase
           .from('profiles')
           .update({ username: this.user.username })
           .eq('id', user.id)
 
         if (error) {
-          throw new Error('Error updating username: ' + error.message)
+          console.log(error.message)
+        } else {
+          console.log('Username updated successfully')
+          this.user.username = ''
         }
-
-        console.log('Username updated successfully')
-        this.user.username = ''
       } catch (error) {
-        console.error('Error:', error.message)
+        console.log('Unexpected error:', error)
       }
     }
   }
 }
+
 </script>
+
+<style scoped>
+.create-username {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+</style>
