@@ -74,4 +74,3 @@ h1 {
   margin: 10px;
 }
 </style>
-
