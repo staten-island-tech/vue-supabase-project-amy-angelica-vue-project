@@ -25,7 +25,7 @@ async function fetchRestaurants() {
   const same = [];
   try {
     const response = await fetch(URL);
-    if (response.status !== 200) {
+    if (response.status !== 200) { 
       throw new Error(response.statusText);
     }
     const allRestaurants = await response.json();
