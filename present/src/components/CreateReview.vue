@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { supabase } from './supabaseClient'
+import { supabase } from '../../lib/supabaseClient'
 import { ref } from 'vue'
 import { usethisStore } from '@/stores/storecreate';
 const store = usethisStore();

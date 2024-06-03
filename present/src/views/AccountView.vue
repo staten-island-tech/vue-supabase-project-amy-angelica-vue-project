@@ -112,8 +112,9 @@ export default {
 </script>
  --><template>
       <nav>
-        <router-link to="/home">Home</router-link>
+        <router-link to="/nothome">Home</router-link>
         <router-link to="/account">Account</router-link>
+       
       </nav>
       <div>
     <h1 class="page">Profile</h1>

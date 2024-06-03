@@ -1,4 +1,9 @@
 <template>
+   <nav>
+        <router-link to="/nothome">Home</router-link>
+        <router-link to="/account">Account</router-link>
+       
+      </nav>
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
   <h2>{{ selected_rest[0].street }}</h2>
   <h1>Reviews</h1>
