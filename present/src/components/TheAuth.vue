@@ -25,22 +25,14 @@
 
 <script setup>
 import { ref } from 'vue'
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '../router/supabase'
  
-const supabase = createClient('https://uzufnrmrvcxbarxfvhks.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6dWZucm1ydmN4YmFyeGZ2aGtzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTIxNTE5NzcsImV4cCI6MjAyNzcyNzk3N30.-iz6vsmlLmImNAIyNjVGPy-q0dznZNeT9W_sRbEJ2mM')
-
 const loading = ref(false)
 const email = ref('')
 const password = ref('')
 const username = ref('')
 
-defineProps({
-  props: {
-    email: String,
-  password: Number
-  }
-  
-})
+
 const handleLogin = async () => {
   try {
     loading.value = true
@@ -65,28 +57,6 @@ console.log(email, password, username)
   }
 }
 
-          
-//const { error } = await supabase.auth.signOut()
-
-
-/* const login = async()=> {
-  try{
-    loading.value=true
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: response.user.emails[0],
-      password: response.user.passwords[0],
-})
-  if (error) throw error
-    alert('ok')
-  } catch (error) {
-    if (error instanceof Error) {
-      alert(error.message)
-    }
-  } finally {
-    loading.value = false
-  }
-}
-login(); */
 </script>
 
 <style>

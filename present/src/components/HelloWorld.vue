@@ -1,12 +1,12 @@
-<script setup>
+<script>
 defineProps({
   msg: {
     type: String,
     required: true
   }
 })
-</script>
 
+</script>
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
