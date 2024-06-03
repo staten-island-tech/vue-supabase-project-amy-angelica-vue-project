@@ -12,13 +12,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onBeforeMount } from 'vue';
+import { supabase } from '@/components/supabaseClient'; 
 import RestaurantCard from '@/components/icons/RestaurantCard.vue';
 
 const restaurants = ref([]);
 const categoryInput = ref('');
 const awmanMessage = ref('');
 
+async function getrestaurant() {
+  let { data: restaurant, error } = await supabase.from('Restaurants').select('*')
+  restaurants.value = restaurant;
+}
+onBeforeMount(() => {
+  getrestaurant()
+})
 async function fetchRestaurants() {
   clearFields();
   const URL = "https://data.cityofnewyork.us/resource/pitm-atqc.json";
@@ -30,7 +38,7 @@ async function fetchRestaurants() {
     }
     const allRestaurants = await response.json();
     allRestaurants.forEach(restaurant => {
-      if (restaurant.restaurant_name.toLowerCase().includes(categoryInput.value.toLowerCase())) {
+      if (restaurant.restaurant_name.toLowerCase() === categoryInput.value.toLowerCase()) {
         same.push(restaurant);
       }
     });
