@@ -38,7 +38,7 @@ async function fetchRestaurants() {
     }
     const allRestaurants = await response.json();
     allRestaurants.forEach(restaurant => {
-      if (restaurant.restaurant_name.toLowerCase() === categoryInput.value.toLowerCase()) {
+      if (restaurant.restaurant_name.toLowerCase().includes(categoryInput.value.toLowerCase())) {
         same.push(restaurant);
       }
     });
