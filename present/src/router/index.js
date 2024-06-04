@@ -8,9 +8,7 @@ const router = createRouter({
       path: '/createuser',
       name: 'createuser',
       component: () => import('../views/CreateView.vue')
-    
     },
-
     {
       path: '/nothome',
       name: 'nothome',
@@ -22,13 +20,13 @@ const router = createRouter({
     {
       path: '/account',
       name: 'account',
-      component: () => import('../views/AccountView.vue'),       meta: { requiresAuth: true }
+      component: () => import('../views/AccountView.vue'), meta: { requiresAuth: true }
     },
     {
       path: '/',
       name: 'loginuser',
-      component: () => import('../views/LoginView.vue'), },
-  
+      component: () => import('../views/LoginView.vue')
+    },
     {
       path: '/restaurant/:restaurant_id',
       name: 'restaurant',
@@ -37,11 +35,10 @@ const router = createRouter({
   ]
 })
 
-
 router.beforeEach((to, from, next) => {
   const userSession = storeSession()
 
-  if (to.meta.needsAuth) {
+  if (to.meta.requiresAuth) {
     if (userSession.session) {
       return next()
     } else {
@@ -51,4 +48,5 @@ router.beforeEach((to, from, next) => {
 
   return next()
 })
+
 export default router

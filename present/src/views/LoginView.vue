@@ -2,8 +2,6 @@
   <form class="ya" @submit.prevent="login()">
     <router-link to="/">Login</router-link>
         <router-link to="/createuser">Register</router-link>
-
-        
     <h1>Login with your email and password below</h1>
     <div>
       <input

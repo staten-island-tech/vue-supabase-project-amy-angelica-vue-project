@@ -1,20 +1,14 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import {RouterView } from 'vue-router'
 import { supabase } from '../lib/supabaseClient.js'
+import {storeSession} from '@/stores/session.js'
 
 
-const session = ref()
+const sessionStore = storeSession()
 
-
-onMounted(() => {
-  supabase.auth.getSession().then(({ data }) => {
-    session.value = data.session
-  })
-
-  supabase.auth.onAuthStateChange((_, _session) => {
-    session.value = _session
-  })
+supabase.auth.onAuthStateChange((event, session)=>  {
+console.log (event,session)
+sessionStore.session = session
 })
 </script>
 

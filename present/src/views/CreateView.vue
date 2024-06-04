@@ -1,10 +1,10 @@
 <template>
-  <form class="all-createuser" @submit.prevent="create_account_for_user()">
+  <form class="all-createuser" @submit.prevent="createAccountForUser">
     <router-link to="/">Login</router-link>
-        <router-link to="/createuser">Register</router-link>
-        <router-link to="/account">Account</router-link>
+    <router-link to="/createuser">Register</router-link>
+    <router-link to="/account">Account</router-link>
 
-        <h1>Register with your email and password below.</h1>
+    <h1>Register with your email and password below.</h1>
 
     <input
       class="inputField"
@@ -26,32 +26,34 @@
   </form>
   <div class="login">
     <p>Already have an account? Login</p>
-    <router-link class="loginLink" to="/loginuser">Login Here!</router-link>
+    <router-link class="loginLink" to="/">Login Here!</router-link>
   </div>
-  
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { supabase } from '../../lib/supabaseClient.js'
+import { useRouter } from 'vue-router'
 
 const registerEmail = ref('')
 const registerPassword = ref('')
+const router = useRouter()
 
-async function create_account_for_user() {
+async function createAccountForUser() {
   try {
     const { error } = await supabase.auth.signUp({
       email: registerEmail.value,
       password: registerPassword.value
     })
     if (error) throw error
+    alert('Account created successfully! Please log in.')
+    router.push('/')
   } catch (error) {
     if (error instanceof Error) {
       alert(error.message)
     }
   } finally {
     console.log('Register Successful')
-
   }
 }
 </script>
