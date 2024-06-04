@@ -1,46 +1,23 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { onMounted, ref } from 'vue'
-import Account from './components/Account.vue'
-import Auth from './components/TheAuth.vue'
-import {supabase} from './router/supabase'
+import {RouterView } from 'vue-router'
+import { supabase } from '../lib/supabaseClient.js'
+import {storeSession} from '@/stores/session.js'
 
-const session = ref()
 
-onMounted(() => {
-  supabase.auth.getSession().then(({ data }) => {
-    session.value = data.session
-  })
+const sessionStore = storeSession()
 
-  supabase.auth.onAuthStateChange((_, _session) => {
-    session.value = _session
-  })
+supabase.auth.onAuthStateChange((event, session)=>  {
+console.log (event,session)
+sessionStore.session = session
 })
 </script>
 
 <template>
-  <header class = "header">
-
-
-      <nav>
-        <RouterLink id = "navigate" to="/">Home</RouterLink>
-        <RouterLink id = "navigate" to="/create">Create</RouterLink>
-        <RouterLink id = "navigate" to="/account">Account</RouterLink>
-      </nav>
-  </header>
-
+  
   <RouterView />
   
 </template>
 
 <style scoped>
-.header {
-  text-align: center;
-}
 
-
-#navigate { 
-  padding-left: 30px;
-  padding-right: 30px;
-}
 </style>
