@@ -15,7 +15,7 @@
     <button class="5" @click="counter = 5">5</button>
   </div>
   <textarea v-model="message" placeholder="add multiple lines"></textarea>
-  <button @click.once="post_it(counter)">Post Review</button>
+  <button @click.once="post_it(counter,message)">Post Review</button>
 </template>
 
 <script setup>
@@ -27,16 +27,19 @@ store.count++
 const counter = ref(0)
 if (counter !== 0) {
 }
+let message = ref('')
 
-async function post_it(rating) {
+async function post_it(rating, message) {
+  console.log(message, message.value)
   try {
     const { error } = await supabase.from('Posts')
     .insert({ 
       rating: rating,
       restaurant_id: store.restaurant_id, 
-      review: {message}, 
+      review: message, 
 
     })
+     clearValue() 
     console.log('hi')
     if (error) {
       throw new Error(error)
@@ -44,6 +47,9 @@ async function post_it(rating) {
   } catch (error) {
     console.log(error)
   }
+}
+function clearValue() {
+  message.value = '';
 }
 </script>
 <style></style>

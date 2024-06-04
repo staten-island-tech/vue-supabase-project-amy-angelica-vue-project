@@ -46,7 +46,7 @@ async function createAccountForUser() {
       password: registerPassword.value
     })
     if (error) throw error
-    alert('Account created successfully! Please log in.')
+    alert('Account created successfully! Please check your email to verify your account.')
     router.push('/')
   } catch (error) {
     if (error instanceof Error) {

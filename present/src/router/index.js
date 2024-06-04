@@ -31,10 +31,14 @@ const router = createRouter({
       path: '/restaurant/:restaurant_id',
       name: 'restaurant',
       component: () => import('../views/RestaurantData.vue'), meta: { requiresAuth: true }
+    },
+    {
+      path: '/verifyemail',
+      name: 'verifyemail',
+      component: () => import('../views/VerifyView.vue')
     }
   ]
 })
-
 router.beforeEach((to, from, next) => {
   const userSession = storeSession()
 
