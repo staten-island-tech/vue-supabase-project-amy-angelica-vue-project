@@ -48,7 +48,6 @@ async function updateProfile() {
       id: user.id,
       username: username.value,
       avatar_url: avatar_url.value,
-      updated_at: new Date(),
     }
 
     const { error } = await supabase.from('profiles').upsert(updates)
