@@ -1,179 +1,123 @@
-<!-- <template>
-      <form @submit.prevent class="form">
-   <router-link to="/home">Home</router-link>
-        <router-link to="/account">Account</router-link>
-  <div></div>
-  </form>
-</template>
-
 <script setup>
+import { supabase } from '../../lib/supabaseClient'
+import { onMounted, ref, toRefs } from 'vue'
+import {defineProps} from 'vue'
+import Avatar from '@/components/Avatar.vue'
 
-</script> -->
 
+const props = defineProps(['session'])
+const { session } = toRefs(props)
 
+const loading = ref(true)
+const username = ref('')
+const avatar_url = ref('')
 
-<!-- <template>
-  <div>
-    <input v-model="newUsername" placeholder="New Username" />
-    <button @click="updateUsername">Update Username</button>
-  </div>
-</template>
+onMounted(() => {
+  getProfile()
+})
 
-<script setup>
-import { ref } from 'vue'
-import { supabase } from '@/lib/supabaseClient'
-
-const newUsername = ref('')
-
-async function updateUsername() {
+async function getProfile() {
   try {
-    // Update username in Supabase user table
-    const { error } = await supabase
-      .from('users')
-      .update({ username: newUsername.value })
-      .eq('id', currentUser.id)
+    loading.value = true
+    const { user } = session.value
+    console.log(user)
+    const { data, error, status } = await supabase
+      .from('profiles')
+      .select(`username, avatar_url`)
+      .eq('id', user.id)
+      .single()
+
+    if (error && status !== 406) throw error
+
+    if (data) {
+      username.value = data.username
+      avatar_url.value = data.avatar_url
+    }
+  } catch (error) {
+    alert(error.message)
+  } finally {
+    loading.value = false
+  }
+}
+async function updateProfile() {
+  try {
+    loading.value = true
+    const { user } = session.value
+
+    const updates = {
+      id: user.id,
+      username: username.value,
+      avatar_url: avatar_url.value,
+      updated_at: new Date(),
+    }
+
+    const { error } = await supabase.from('profiles').upsert(updates)
 
     if (error) throw error
   } catch (error) {
-    console.error('Error updating username:', error.message)
-    // Handle error
+    alert(error.message)
+  } finally {
+    loading.value = false
   }
 }
 
-// Listen for changes in the user's username in real-time
-supabase
-  .from('users')
-  .on('UPDATE', payload => {
-    const updatedUser = payload.new
-    if (updatedUser.id === currentUser.id) {
-      // Update the newUsername value if it's different from the current value
-      if (newUsername.value !== updatedUser.username) {
-        newUsername.value = updatedUser.username
-      }
-    }
-  })
-  .subscribe()
 </script>
 
- -->
-
-
-
-
-
-<!-- 
-<script>
-import { ref } from 'vue'
-import { supabase } from '../../lib/supabaseClient'
-
-export default {
-  setup() {
-    const username = ref('')
-
-    async function updateUsername() {
-      try {
-        const user = supabase.auth.getUser()
-
-        if (!user) {
-          console.error('User is not authenticated.')
-          return
-        }
-
-        if (!user.id) {
-          console.error('User ID is undefined.')
-          return
-        }
-
-        // Check if user already has a username
-        if (user.username) {
-          console.log('User already has a username:', user.username)
-          return
-        }
-
-        // If user doesn't have a username, create one
-        const { error } = await supabase
-          .from('profiles')
-          .update({ username: username.value })
-          .eq('id', user.id)
-
-        if (error) {
-          throw error
-        }
-
-        console.log('Username created successfully!')
-      } catch (error) {
-        console.error('Error updating username:', error.message)
-      }
-    }
-
-    return { username, updateUsername }
-  }
-}
-</script>
- --><template>
-      <nav>
-        <router-link to="/nothome">Home</router-link>
-        <router-link to="/account">Account</router-link>
-       
-      </nav>
-      <div>
-    <h1 class="page">Profile</h1>
-      </div>
-      <div class="header">
-    <form @submit.prevent="Submit" class="form">
-      <div class="yoyo">
-        <label for="username">Username</label>
-        <input type="text" required v-model="user.username" id="username">
+<template>
+  <div class="formcontainer">
+    <form class="form-widget" @submit.prevent="updateProfile">
+    <div class="left">
+ 
     
-      </div>
-      <button type="submit" class="button">Submit</button>
-    </form>
+      <label for="username">Change Username</label>
+      <input id="username" type="text" v-model="username" />
+     
+     
+      <input
+        type="submit"
+        class="button primary block"
+        :value="loading ? 'Loading ...' : 'Update'"
+        :disabled="loading"
+      />
     </div>
-  </template>
 
-<script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { supabase } from '../../lib/supabaseClient.js';
-export default {
-  data() {
-    return {
-      user: {
-        username: ''
-      }
-    };
-  },
-  methods: {
-    async Submit() {
-      try {
-        const { data: { user } } = await supabase.auth.getUser()
-   
-        let { error } = await supabase
-          .from('profiles')
-          .update({ username: this.user.username })
-          .eq('id', user.id)
+    <form class="form-widget" @submit.prevent="updateProfile">
+    <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
+  </form>
+  
+    </form>  </div>   
+    <!-- :value="session.user.email" -->
 
-        if (error) {
-          console.log(error.message)
-        } else {
-          console.log('Username updated successfully')
-          this.user.username = ''
-        }
-      } catch (error) {
-        console.log('Unexpected error:', error)
-      }
-    }
-  }
+</template>
+<style scoped>
+.formcontainer{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+.form-widget{
+  background-color: antiquewhite;
+  box-sizing: border-box;
+}
+.left{
+  flex: 1;
+  padding-right: 20px;
+  padding-bottom: 10px;
 }
 
-</script>
-
-<style scoped>
-.create-username {
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.right{
+  flex: 1;
+  padding-left: 20px;
+}
+#app{
+  display: flex;
+}
+input, select{
+  width: 100%;;
+  padding: 10px;
+}
+.sub{
+  margin-top: 10px;
 }
 </style>

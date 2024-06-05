@@ -43,12 +43,13 @@ const router = useRouter()
 async function login() {
   try {
     loginLoading.value = true
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data,error } = await supabase.auth.signInWithPassword({
       email: loginEmail.value,
       password: loginPassword.value
     })
+    console.log(data)
     if (error) throw error
-
+   
     router.push('/account')
   } catch (error) {
     if (error instanceof Error) {

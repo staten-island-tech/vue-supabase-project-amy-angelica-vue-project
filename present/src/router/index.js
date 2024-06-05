@@ -36,14 +36,14 @@ const router = createRouter({
       path: '/verifyemail',
       name: 'verifyemail',
       component: () => import('../views/VerifyView.vue')
-    }
+    },
   ]
 })
 router.beforeEach((to, from, next) => {
   const userSession = storeSession()
 
   if (to.meta.requiresAuth) {
-    if (userSession.session) {
+    if (userSession.sessin) {
       return next()
     } else {
       return next('/')
@@ -54,3 +54,4 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
+\
