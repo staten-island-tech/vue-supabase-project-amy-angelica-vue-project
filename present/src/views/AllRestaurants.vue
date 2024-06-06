@@ -124,11 +124,14 @@ getData(URL);
 </style> -->
 
 <template>
-  <nav>
-         <router-link to="/nothome">Home</router-link>
-         <router-link to="/account">Account</router-link>
+  <header>
+    <nav>
+         <router-link to="/nothome" class ="navigate">Home</router-link>
+         <router-link to="/account" class ="navigate">Account</router-link>
         
        </nav>
+  </header>
+  
        <button @click.prevent="logout">Log Out</button>
    <div class="container">
      <RestaurantCard
@@ -193,16 +196,59 @@ getData(URL);
  getData(URL);
  
  </script>
+
+ 
  <style >
- .container {
-   display: flex;
-   align-items: center;
+ header {
+   background-color: white;
+   margin: 25px;
    text-align: center;
-   flex-wrap: wrap;
-   justify-content: space-around;
+   margin-bottom: 50px;
+ 
  }
- .title {
-   font-size: 50px;
+ 
+ 
+ .navigate {
+   padding: 10px 70px;
+   margin: 50px;
    text-align: center;
+   font-size: 1.2rem;
+   background-color: rgb(215, 158, 221);
+   color: white;
+   border-radius: 10px;
+   transition: background-color 0.5s;
+   
  }
+ .navigate:hover {
+  background-color: rgb(142, 98, 154);
+}
+ 
+.container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.title {
+  font-size: 50px;
+  text-align: center;
+}
+
+
+button {
+  background-color: white;
+  padding: 1.5% 2%;
+  border-radius: 25px;
+  border: 1px solid #5e445f;
+text-align: center;
+margin-left: 45%;
+}
+
+button:hover {
+  background-color: rgb(170, 131, 181);
+  transition: background-color 0.7s;
+
+
+}
  </style>

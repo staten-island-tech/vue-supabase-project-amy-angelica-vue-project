@@ -63,65 +63,114 @@ async function updateProfile() {
 </script>
 
 <template>
-  <div class="top-bar">
-    <h3>Welcome, {{ username }}!</h3>
-  </div>
-    <router-link to="/nothome">Home</router-link>
-        <router-link to="/account">Account</router-link>
-  <div class="formcontainer">
-    <form class="form-widget" @submit.prevent="updateProfile">
-    <div class="left">
+  <header>
+    <nav>
+      <router-link to="/nothome" class="navigate">Home</router-link>
+        <router-link to="/account" class="navigate">Account</router-link>
+    </nav>
+  </header>
  
-    
-      <label for="username">Change Username</label>
-      <input id="username" type="text" v-model="username" />
-     
-     
+  
+    <form class="form" @submit.prevent="updateProfile()">
+      <h3>Welcome, {{ username }}!</h3>
+    <div class="left">
+ <div class="inputs">
+      <input
+        class="inputField"
+        required
+        type="username"
+        placeholder="Username"
+        v-model="username"
+      />
+    </div>
+    <div class="inputs">
       <input
         type="submit"
-        class="button primary block"
+        class="buttonblock"
         :value="loading ? 'Loading ...' : 'Update'"
         :disabled="loading"
       />
     </div>
+   
+    </div>
 
-    <form class="form-widget" @submit.prevent="updateProfile">
-    <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
-  </form>
+    <form class="" @submit.prevent="updateProfile">
+<!--     <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
+ -->  </form>
   
-    </form>  </div>   
-    <!-- :value="session.user.email" -->
+    </form>    
 
 </template>
 <style scoped>
-.formcontainer{
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  min-height: 100vh;
-}
-.form-widget{
-  background-color: antiquewhite;
-  box-sizing: border-box;
-}
-.left{
-  flex: 1;
-  padding-right: 20px;
-  padding-bottom: 10px;
+
+header {
+  background-color: white;
+  margin: 25px;
+  text-align: center;
+  margin-bottom: 100px;
+
 }
 
-.right{
-  flex: 1;
-  padding-left: 20px;
+h3 {
+  font-size: 23px;
+  padding: 4%;
+  background-color: white;
+
 }
-#app{
-  display: flex;
+
+.navigate {
+  padding: 10px 70px;
+  margin: 50px;
+  text-align: center;
+  font-size: 1.2rem;
+  background-color: rgb(215, 158, 221);
+  color: white;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  
 }
-input, select{
-  width: 100%;;
+
+
+.inputs {
+  padding-bottom: 20px;
+  background-color: white;
+}
+
+
+.buttonblock {
+  background-color: white;
+  padding: 1.5% 2%;
+  border-radius: 25px;
+  border: 1px solid #5e445f;
+
+}
+
+.buttonblock:hover {
+  background-color: rgb(170, 131, 181);
+  transition: background-color 0.7s;
+
+}
+
+.inputField {
+  width: 70%;
   padding: 10px;
+  border: 1px solid #5e445f;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  background-color: rgb(237, 227, 241);
 }
-.sub{
-  margin-top: 10px;
+
+
+.navigate:hover {
+  background-color: rgb(142, 98, 154);
 }
+
+.form {
+  width: 65%;
+  border: 15px solid rgb(130, 112, 131);
+  margin-left: 13%;
+  text-align: center;
+}
+
+
 </style>
