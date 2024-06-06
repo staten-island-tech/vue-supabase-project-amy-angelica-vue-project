@@ -168,7 +168,7 @@ h3 {
 .form {
   width: 65%;
   border: 15px solid rgb(130, 112, 131);
-  margin-left: 13%;
+  margin-left: 15%;
   text-align: center;
 }
 
