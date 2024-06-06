@@ -1,6 +1,7 @@
 import { storeSession } from '@/stores/session.js'
 import { createRouter, createWebHistory } from 'vue-router'
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,12 +16,14 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AllRestaurants.vue'), meta: { requiresAuth: true }
+      component: () => import('../views/AllRestaurants.vue'), 
+      meta: { requiresAuth: true }
     },
     {
       path: '/account',
       name: 'account',
-      component: () => import('../views/AccountView.vue'), meta: { requiresAuth: true }
+      component: () => import('../views/AccountView.vue'), 
+      meta: { requiresAuth: true }
     },
     {
       path: '/',
@@ -39,11 +42,12 @@ const router = createRouter({
     },
   ]
 })
+
 router.beforeEach((to, from, next) => {
-  const userSession = storeSession()
+  const sessionStore = storeSession()
 
   if (to.meta.requiresAuth) {
-    if (userSession.sessin) {
+    if (sessionStore.session) {
       return next()
     } else {
       return next('/')
@@ -54,4 +58,3 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
-\

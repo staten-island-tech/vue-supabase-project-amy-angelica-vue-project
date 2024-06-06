@@ -1,12 +1,11 @@
 <script setup>
 import { supabase } from '../../lib/supabaseClient'
-import { onMounted, ref, toRefs } from 'vue'
-import {defineProps} from 'vue'
+import { onMounted, ref } from 'vue'
 import Avatar from '@/components/Avatar.vue'
+import { storeSession } from '@/stores/session';
 
-
-const props = defineProps(['session'])
-const { session } = toRefs(props)
+const sessionStore = storeSession()
+const session = ref(sessionStore.session)
 
 const loading = ref(true)
 const username = ref('')
@@ -54,16 +53,21 @@ async function updateProfile() {
     const { error } = await supabase.from('profiles').upsert(updates)
 
     if (error) throw error
+    await getProfile()
   } catch (error) {
     alert(error.message)
   } finally {
     loading.value = false
   }
 }
-
 </script>
 
 <template>
+  <div class="top-bar">
+    <h3>Welcome, {{ username }}!</h3>
+  </div>
+    <router-link to="/nothome">Home</router-link>
+        <router-link to="/account">Account</router-link>
   <div class="formcontainer">
     <form class="form-widget" @submit.prevent="updateProfile">
     <div class="left">

@@ -34,9 +34,11 @@
 import { ref } from 'vue'
 import { supabase } from '../../lib/supabaseClient.js'
 import { useRouter } from 'vue-router'
+import {storeSession} from '@/stores/session.js'
+const sssession = storeSession()
 
-const loginEmail = ref()
-const loginPassword = ref()
+const loginEmail = ref('')
+const loginPassword = ref('')
 const loginLoading = ref(false)
 const router = useRouter()
 
@@ -47,14 +49,16 @@ async function login() {
       email: loginEmail.value,
       password: loginPassword.value
     })
-    console.log(data)
     if (error) throw error
-   
+    console.log(data)
+    
+    
     router.push('/account')
+    sssession.setSession(data.session)
   } catch (error) {
-    if (error instanceof Error) {
+console.error (error)
       alert('Username and/or password is not found in our system. Maybe try again or create an account?')
-    }
+    
   } finally {
     loginLoading.value = false
   }
