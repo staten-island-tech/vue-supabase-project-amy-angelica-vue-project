@@ -140,7 +140,7 @@ function clearValue() {
 
 button {
   background-color: white;
-  padding: 1.5% 2%;
+  padding: 1% 2%;
   border-radius: 25px;
   border: 1px solid #5e445f;
 text-align: center;
