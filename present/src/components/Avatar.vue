@@ -55,10 +55,10 @@ watch(path, () => {
       v-if="src"
       :src="src"
       alt="Avatar"
-      class="avatar image"
+      class="avatarimage"
       :style="{ height: size + 'em', width: size + 'em' }"
     />
-    <div v-else class="avatar no-image" :style="{ height: size + 'em', width: size + 'em' }" />
+    <div v-else class="avatarno-image"  />
 
     <div class="um" >
       <label class="buttonprimaryblock" for="single">
@@ -80,8 +80,13 @@ watch(path, () => {
   text-align: center;
   align-items: center;
   font-size: 30px;
+  background-color: rgb(237, 227, 241);
 }
 .a, .um{
   background-color: white;
+}
+.avatarimage, .avatarno-image{
+  align-items: center;
+  align-self: center;
 }
 </style>
