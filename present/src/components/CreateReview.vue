@@ -41,6 +41,7 @@ async function post_it(rating, message) {
       rating: rating,
       restaurant_id: store.restaurant_id, 
       review: message, 
+      upvote: store.upvote,
 
     })
      clearValue() 

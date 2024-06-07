@@ -6,6 +6,7 @@ export const usethisStore = defineStore('StoreCreated',{
             restaurant: null,
             restaurant_id: 2,
             rating: null,
+            upvote: 0
         }
     }
 })

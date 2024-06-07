@@ -10,36 +10,12 @@
 </div> 
 </template>
 
-<script setup>
-import { supabase } from '../supabaseClient';
-import { ref, onBeforeMount } from 'vue';
-import likebutton from './likebutton.vue';
+<script setup>import likebutton from './likebutton.vue';
 const props = defineProps({
    post: Object,
    postid: Number 
 })
-let replies = ref('');
-async function get_replies() {
-  try {
-    let { data: reply, error } = await supabase.from('Replies').select('*');
-  replies.value = reply;
-    console.log(reply)
-  if(error){
-    throw new Error(error)
-  }
-  } catch (error) {
-    console.log(error)
-  }
-  
-}
-onBeforeMount(() => {
-  get_replies();
 
-});
-
-// function reply_to(message){
-
-// }
 
 </script>
 <style scoped>
