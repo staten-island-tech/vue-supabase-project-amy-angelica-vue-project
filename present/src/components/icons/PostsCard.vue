@@ -4,18 +4,19 @@
   <h3>Created at:{{ post.created_at }}</h3>
         <h2>Rating: {{ post.rating }}</h2>
        <h2>Review: {{ post.review }}</h2> 
-<likebutton/>
 <!-- <input v-model="message" placeholder="edit me" />
 <button @click="reply_to(message)">Post Reply</button> -->
 </div> 
 </template>
 
-<script setup>import likebutton from './likebutton.vue';
+<script setup>
 const props = defineProps({
    post: Object,
    postid: Number 
 })
 
+
+// }
 
 </script>
 <style scoped>
