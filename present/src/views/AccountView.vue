@@ -94,9 +94,9 @@ async function updateProfile() {
    
     </div>
 
-    <form class="" @submit.prevent="updateProfile">
-<!--     <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
- -->  </form>
+    <form class="pfp" @submit.prevent="updateProfile">
+     <Avatar v-model:path="avatar_url" @upload="updateProfile" size="10" />
+  </form>
   
     </form>    
 
@@ -170,6 +170,11 @@ h3 {
   border: 15px solid rgb(130, 112, 131);
   margin-left: 15%;
   text-align: center;
+  background-color: white;
+}
+.pfp{
+  text-align: center;
+  background-color:rgb(255, 255, 255) ;
 }
 
 

@@ -50,7 +50,7 @@ watch(path, () => {
 </script>
 
 <template>
-  <div>
+  <div class="a">
     <img
       v-if="src"
       :src="src"
@@ -60,9 +60,9 @@ watch(path, () => {
     />
     <div v-else class="avatar no-image" :style="{ height: size + 'em', width: size + 'em' }" />
 
-    <div :style="{ width: size + 'em' }">
-      <label class="button primary block" for="single">
-        {{ uploading ? 'Uploading ...' : 'Upload' }}
+    <div class="um" >
+      <label class="buttonprimaryblock" for="single">
+        {{ uploading ? 'Uploading ...' : 'Upload here!' }}
       </label>
       <input
         style="visibility: hidden; position: absolute"
@@ -75,3 +75,13 @@ watch(path, () => {
     </div>
   </div>
 </template>
+<style>
+.buttonprimaryblock{
+  text-align: center;
+  align-items: center;
+  font-size: 30px;
+}
+.a, .um{
+  background-color: white;
+}
+</style>
