@@ -88,6 +88,9 @@ textarea{
 
 .singlebutton {
  font-size: 15px;
+ background-color: white;
+ margin-left: 1.5%;
+ padding: 2px;
 }
 ::placeholder{
   color: black;
