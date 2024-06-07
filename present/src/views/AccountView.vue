@@ -5,6 +5,7 @@ import Avatar from '@/components/Avatar.vue'
 import { storeSession } from '@/stores/session';
 import { usethisStore } from '@/stores/storecreate';
 import { userstore } from '@/stores/storecreate';
+import { user_array } from '@/stores/storecreate';
 const storew = userstore();
 const store = usethisStore();
 
@@ -38,9 +39,11 @@ async function getProfile() {
     //   store.$patch({
     //   user_id: user.id,
     // })
-    storew.$patch({
-      user_id: user.id,
-    })
+    // storew.$patch({
+    //   user_id: user.id,
+    // })
+        user_array.push(user.id)
+console.log(user_array)
     }
   } catch (error) {
     alert(error.message)

@@ -19,3 +19,5 @@ export const userstore = defineStore('StoreCreated',{
         }
     }
 })
+
+export const user_array = []

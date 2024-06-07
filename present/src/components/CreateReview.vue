@@ -19,6 +19,7 @@
   <textarea v-model="message" placeholder="Add Review"></textarea>
   <div class="yasbutton">
   <button @click.once="post_it(counter,message)" class ="singlebutton">Post Review</button>
+  <h3>after submitting review, return to the home page and revisit the restaurant page to see update, DO NOT refresh the page to see the update</h3>
 </div>
 </template>
 
@@ -26,13 +27,14 @@
 import { userstore } from '@/stores/storecreate';
 import { supabase } from '../../lib/supabaseClient'
 import { ref } from 'vue'
+import { user_array } from '@/stores/storecreate';
 import { usethisStore } from '@/stores/storecreate';
 const store = usethisStore();
 const storew = userstore();
 store.count++
 let counter = ref('')
 let message = ref('')
-
+let userids = user_array
 async function post_it(rating, message) {
   console.log(message, message.value)
   try {
@@ -41,13 +43,13 @@ async function post_it(rating, message) {
       rating: rating,
       restaurant_id: store.restaurant_id, 
       review: message, 
-      user_id: storew.user_id,
+      user_id: userids[0]
 
     })
     store.$patch({
       user_id:store.user_idf
     })
-    console.log(store.user_id)
+    console.log(userids)
      clearValue() 
     console.log('hi')
     if (error) {
