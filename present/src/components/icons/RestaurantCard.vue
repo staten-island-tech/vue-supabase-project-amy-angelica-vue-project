@@ -1,5 +1,6 @@
 <template>
     <router-link :to="restPath" class="card">
+
         <h1>{{ restaurant.restaurant_name }}</h1>
         <h2>{{ restaurant.business_address + ", " + restaurant.postcode }}</h2>
         <h2>Sidewalk Seating: {{ restaurant.approved_sidewalk_seating }}</h2>
@@ -29,11 +30,22 @@ const restPath = computed(()=>{
    padding: 2%;
    margin: 2rem 2rem;
    border: 3px solid black;
-   width: 200px;
-   height: 45vh;
-
+   width: 30%;
+ 
  }
+
  h1, h2, h3 {
    background-color: white;
+   transition: color 0.5s;
+   text-align: center;
+padding-top: 3%;
+padding-bottom: 3%;
+  
+
  } 
+
+ h1:hover, h2:hover, h3:hover{
+  color: rgb(251, 0, 234);
+
+ }
 </style>

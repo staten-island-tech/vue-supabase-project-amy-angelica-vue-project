@@ -1,4 +1,12 @@
 <template>
+  <header>
+    <nav>
+        <router-link to="/nothome" class ="navigate">Home</router-link>
+        <router-link to="/account" class="navigate">Account</router-link>
+       
+      </nav>
+  </header>
+   
   <h1>{{ selected_rest[0].restaurant_name }}</h1>
   <h2>{{ selected_rest[0].street }}</h2>
   <h1>Reviews</h1>
@@ -21,7 +29,7 @@ import { useRoute } from "vue-router";
 import { usethisStore } from "@/stores/storecreate";
 const store = usethisStore();
 const route = useRoute();
-import { supabase } from "@/components/supabaseClient";
+import { supabase } from "../../lib/supabaseClient";
 let selected_rest = ref('');
 async function get_s_restaurant() {
   try {
@@ -68,5 +76,37 @@ import PostsCard from "@/components/icons/PostsCard.vue";
   text-align: center;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+h1{
+  font-size: 35px;
+  margin: 5px 15px;
+}
+
+h2{
+  font-size: 25px;
+  margin: 5px 15px;}
+
+header {
+  margin: 25px;
+  text-align: center;
+  margin-bottom: 50px;
+
+}
+
+.navigate {
+  padding: 10px 70px;
+  margin: 50px;
+  text-align: center;
+  font-size: 1.2rem;
+  background-color: rgb(215, 158, 221);
+  color: white;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  
+}
+
+.navigate:hover {
+  background-color: rgb(142, 98, 154);
 }
 </style>

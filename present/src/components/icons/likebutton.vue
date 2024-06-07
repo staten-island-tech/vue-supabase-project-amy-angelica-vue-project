@@ -26,7 +26,21 @@
 }
 like_it(counter)
   </script>
-  <style>
- 
+
+  <style scoped>
+button {
+  background-color: white;
+  padding: 1.5% 10%;
+  border-radius: 25px;
+  border: 1px solid #5e445f;
+  margin-bottom: 15px;
+}
+
+p {
+  background-color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
   </style>
   
