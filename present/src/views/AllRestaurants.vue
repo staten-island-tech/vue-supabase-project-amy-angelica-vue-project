@@ -151,6 +151,11 @@ button:hover {
   background-color: rgb(170, 131, 181);
   transition: background-color 0.7s;
 
+}
 
+#start {
+  padding: 4px;
+  margin-left: 40px;
+  border-radius: 0;
 }
  </style>
