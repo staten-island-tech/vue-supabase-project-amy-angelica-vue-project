@@ -30,7 +30,7 @@
  
  const router = useRouter();
  const loginLoading = ref(false);
- const restaurants = ref([]);  // Changed from an empty string to an array
+ const restaurants = ref([]);  
  const categoryInput = ref('');
  const awmanMessage = ref('');
  
