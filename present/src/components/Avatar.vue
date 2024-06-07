@@ -58,7 +58,7 @@ watch(path, () => {
       class="avatarimage"
       :style="{ height: size + 'em', width: size + 'em' }"
     />
-    <div v-else class="avatarno-image"  />
+    <div v-else class="avatarno-image"> </div>
 
     <div class="um" >
       <label class="buttonprimaryblock" for="single">
