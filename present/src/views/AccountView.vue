@@ -3,6 +3,10 @@ import { supabase } from '../../lib/supabaseClient'
 import { onMounted, ref } from 'vue'
 import Avatar from '@/components/Avatar.vue'
 import { storeSession } from '@/stores/session';
+import { usethisStore } from '@/stores/storecreate';
+import { userstore } from '@/stores/storecreate';
+const storew = userstore();
+const store = usethisStore();
 
 const sessionStore = storeSession()
 const session = ref(sessionStore.session)
@@ -31,6 +35,12 @@ async function getProfile() {
     if (data) {
       username.value = data.username
       avatar_url.value = data.avatar_url
+    //   store.$patch({
+    //   user_id: user.id,
+    // })
+    storew.$patch({
+      user_id: user.id,
+    })
     }
   } catch (error) {
     alert(error.message)

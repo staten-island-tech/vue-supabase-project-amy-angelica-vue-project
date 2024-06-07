@@ -23,14 +23,14 @@
 </template>
 
 <script setup>
+import { userstore } from '@/stores/storecreate';
 import { supabase } from '../../lib/supabaseClient'
 import { ref } from 'vue'
 import { usethisStore } from '@/stores/storecreate';
 const store = usethisStore();
+const storew = userstore();
 store.count++
-const counter = ref(0)
-if (counter !== 0) {
-}
+let counter = ref('')
 let message = ref('')
 
 async function post_it(rating, message) {
@@ -41,8 +41,13 @@ async function post_it(rating, message) {
       rating: rating,
       restaurant_id: store.restaurant_id, 
       review: message, 
+      user_id: storew.user_id,
 
     })
+    store.$patch({
+      user_id:store.user_idf
+    })
+    console.log(store.user_id)
      clearValue() 
     console.log('hi')
     if (error) {
