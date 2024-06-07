@@ -50,6 +50,7 @@ async function post_it(rating, message) {
       user_id:store.user_idf
     })
     console.log(userids)
+    console.log(store.restaurant_id)
      clearValue() 
     console.log('hi')
     if (error) {
