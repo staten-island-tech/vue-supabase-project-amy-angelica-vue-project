@@ -31,13 +31,9 @@ const restPath = computed(()=>{
    margin: 2rem 2rem;
    border: 3px solid black;
    width: 30%;
-   transition: background-color 0.5s;
  
  }
 
- .card:hover{
-  background-color: rgb(238, 213, 236);
- }
  h1, h2, h3 {
    background-color: white;
    transition: color 0.5s;

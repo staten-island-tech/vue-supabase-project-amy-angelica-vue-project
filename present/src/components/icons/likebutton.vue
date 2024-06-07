@@ -12,10 +12,10 @@ const counter = ref(0)
   <style scoped>
 button {
   background-color: white;
-  padding: 1.5% 5%;
+  padding: 1.5% 10%;
   border-radius: 25px;
   border: 1px solid #5e445f;
-  margin-left: 70%;
+  margin-bottom: 15px;
 }
 
 p {

@@ -93,4 +93,20 @@ header {
   margin-bottom: 50px;
 
 }
+
+.navigate {
+  padding: 10px 70px;
+  margin: 50px;
+  text-align: center;
+  font-size: 1.2rem;
+  background-color: rgb(215, 158, 221);
+  color: white;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  
+}
+
+.navigate:hover {
+  background-color: rgb(142, 98, 154);
+}
 </style>

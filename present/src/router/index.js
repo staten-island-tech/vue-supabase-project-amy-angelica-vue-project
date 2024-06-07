@@ -17,13 +17,13 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AllRestaurants.vue'), 
-      meta: { requiresAuth: true }
+     /*  meta: { requiresAuth: true } */
     },
     {
       path: '/account',
       name: 'account',
       component: () => import('../views/AccountView.vue'), 
-      meta: { requiresAuth: true }
+/*       meta: { requiresAuth: true } */
     },
     {
       path: '/',
@@ -33,7 +33,7 @@ const router = createRouter({
     {
       path: '/restaurant/:restaurant_id',
       name: 'restaurant',
-      component: () => import('../views/RestaurantData.vue'), meta: { requiresAuth: true }
+      component: () => import('../views/RestaurantData.vue'), /* meta: { requiresAuth: true } */
     },
     {
       path: '/verifyemail',
@@ -42,7 +42,7 @@ const router = createRouter({
     },
   ]
 })
-
+/* 
 router.beforeEach((to, from, next) => {
   const sessionStore = storeSession()
 
@@ -56,5 +56,5 @@ router.beforeEach((to, from, next) => {
 
   return next()
 })
-
+ */
 export default router
